@@ -1,47 +1,93 @@
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const { name, email, subject, message } = await request.json();
+    const body = await request.json();
+    const { name, email, organization, role, source, subject, message } = body;
 
+    // Validate required fields
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
+    // Create transporter using AWS SES SMTP
     const transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com',
-      port: 587,
-      secure: false,
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || "587"),
+      secure: false, // Use STARTTLS
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: 'contact@viram.uk',
+    // Email content
+    const mailOptions = {
+      from: process.env.EMAIL_FROM,
+      to: process.env.EMAIL_FROM, // Send to yourself
       replyTo: email,
       subject: `VIRAM Contact: ${subject}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%); padding: 20px; border-radius: 10px 10px 0 0;">
+            <h1 style="color: white; margin: 0;">New Contact Form Submission</h1>
+          </div>
+          <div style="background: #f9fafb; padding: 20px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">Name:</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #111827;">${name}</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">Email:</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #111827;">${email}</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">Organization:</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #111827;">${organization || "Not provided"}</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">Role:</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #111827;">${role || "Not provided"}</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">Source:</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #111827;">${source || "Not provided"}</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #6b7280;">Subject:</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #111827;">${subject}</td>
+              </tr>
+            </table>
+            <div style="margin-top: 20px;">
+              <p style="font-weight: bold; color: #6b7280; margin-bottom: 10px;">Message:</p>
+              <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                <p style="color: #111827; margin: 0; white-space: pre-wrap;">${message}</p>
+              </div>
+            </div>
+          </div>
+          <p style="text-align: center; color: #9ca3af; font-size: 12px; margin-top: 20px;">
+            This email was sent from the VIRAM website contact form.
+          </p>
+        </div>
       `,
-    });
+    };
 
-    return NextResponse.json({ success: true, message: 'Email sent successfully' });
-  } catch (error: any) {
-    console.error('Email error:', error);
+    // Send email
+    await transporter.sendMail(mailOptions);
+
     return NextResponse.json(
-      { error: `Email failed: ${error.message}` },
+      { message: "Email sent successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return NextResponse.json(
+      { error: `Email failed: ${error instanceof Error ? error.message : "Unknown error"}` },
       { status: 500 }
     );
   }
