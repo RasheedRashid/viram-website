@@ -40,9 +40,10 @@ export default function About() {
     {
       name: "Dr. Deepika Nikam",
       role: "Founder & Director",
-      image: "/img/ulsterteam/deepika.png",
-      bio: "With over 15 years of experience in AI and Machine Learning, Dr. Deepika Nikam founded VIRAM to bridge the gap between cutting-edge research and practical industry applications through quality training programs.",
+      image: "/img/deepika.jpg",
+      bio: "With over 15 years of experience in AI and Machine Learning, Dr. Deepika Nikam founded AMAR to bridge the gap between cutting-edge research and practical industry applications through quality training programs.",
       linkedin: "#",
+      twitter: "#",
     },
     {
       name: "Dr. Sagar Nikam",
@@ -50,6 +51,7 @@ export default function About() {
       image: "/img/sagar.jpg",
       bio: "Dr. Sagar Nikam brings extensive expertise in Data Science and Analytics. His vision for accessible tech education has shaped our workshop curriculum and community engagement strategies.",
       linkedin: "#",
+      twitter: "#",
     },
   ];
 
@@ -60,20 +62,6 @@ export default function About() {
     "Data Science & Analytics",
     "Deep Learning",
     "Python Programming",
-  ];
-
-  const visionPoints = [
-    "Establish a globally aligned UK–India TNE framework that embeds AI, computer vision, and robotics at the core of intelligent and adaptive manufacturing education.",
-    "Integrate industry-grade vision-based inspection, defect detection, and adaptive control concepts into curriculum design, ensuring strong alignment between academic learning and real manufacturing systems.",
-    "Enable quality-assured dual-site delivery through shared teaching resources, harmonised assessment, and transnational academic governance mechanisms.",
-    "Create a scalable and replicable technical education model that builds sustained faculty expertise and supports future expansion of AI-driven manufacturing curricula across STEM disciplines.",
-  ];
-
-  const missionPoints = [
-    "Translate advanced research in AI, computer vision, and robotics into applied teaching, laboratories, and assessments that develop practical, system-level manufacturing competencies.",
-    "Equip academics and learners with the capability to design, deploy, and evaluate intelligent manufacturing systems, including vision-based inspection and adaptive process control.",
-    "Embed inclusion and gender equity as operational principles, ensuring meaningful participation and leadership opportunities for women in manufacturing and STEM through targeted training, mentoring, and industry engagement.",
-    "Create durable UK–India pathways for skills, mobility, and innovation, enabling sustained academic–industry collaboration and continuous upskilling in high-value manufacturing technologies.",
   ];
 
   const collaborators = [
@@ -99,7 +87,7 @@ export default function About() {
             Empowering Tech Professionals Since 2020
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-400">VIRAM</span>
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-400">AMAR</span>
           </h1>
           <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
             Adaptive Manufacturing with Autonomous Robotics — We provide world-class workshops and training programs in AI, Robotics, and emerging technologies.
@@ -123,124 +111,66 @@ export default function About() {
         </div>
       </section>
 
-      {/* Project Summary Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                Project Overview
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Project Summary
-              </h2>
-            </div>
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12 border border-purple-100">
-              <p className="text-gray-700 text-lg leading-relaxed">
-                Funded by the <span className="font-semibold text-purple-700">British Council Going Global Partnerships: Industry–Academia TNE Grant 2025</span>, this UK–India project establishes a scalable transnational education (TNE) partnership between <span className="font-semibold">Ulster University</span> and <span className="font-semibold">MIT-ADT University, Pune</span> and <span className="font-semibold">SSIG Manufacturing Advancements Pvt. Ltd, India</span>. The project focuses on co-developing an industry-validated STEM module in intelligent vision-based robotics and adaptive manufacturing.
-              </p>
-              <p className="text-gray-700 text-lg leading-relaxed mt-6">
-                Through joint curriculum design, faculty development, industry-led training, and dual-site delivery, it addresses critical AI-manufacturing skills gaps aligned with <span className="font-semibold text-purple-700">Industry 4.0</span> priorities. The initiative strengthens academic–industry collaboration by embedding AI-driven computer vision, robotics, and adaptive manufacturing workflows into curriculum co-design, faculty training, and industry-validated laboratories, delivering a scalable and replicable TNE framework that equips graduates with industry-ready competencies in intelligent inspection, defect detection, and smart manufacturing systems.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Vision Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-900 via-purple-800 to-pink-700 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-pink-500 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 text-white/90 text-sm font-medium mb-6">
-              Our Vision
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Shaping the Future of Manufacturing Education
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {visionPoints.map((point, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-orange-400 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                  </div>
-                  <p className="text-white/90 leading-relaxed">{point}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Mission Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Our Mission
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Driving Innovation Through Education
-            </h2>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left - Content */}
+            <div>
+              <span className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                Our Mission
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                Transforming Careers Through Quality Education
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                At <span className="font-semibold text-purple-700">AMAR</span>, we believe that the exchange of ideas and expertise is the catalyst for technological advancement. Our mission is to create a platform where industry leaders, innovators, and aspiring professionals come together to learn, network, and grow.
+              </p>
+              <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                Founded by Dr. Deepika Nikam and Dr. Sagar Nikam, our workshops and training programs have become the premier destination for technology professionals seeking to stay ahead of the curve. We are committed to delivering exceptional experiences that inspire action and drive real-world impact.
+              </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {missionPoints.map((point, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+              {/* Programs */}
+              <div className="grid grid-cols-2 gap-4">
+                {programs.map((program, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-700 font-medium text-sm">{program}</span>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">{point}</p>
+                ))}
+              </div>
+            </div>
+
+            {/* Right - Visual */}
+            <div className="relative">
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 relative overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-full blur-2xl"></div>
+                <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-br from-pink-400/20 to-purple-500/20 rounded-full blur-2xl"></div>
+                
+                {/* Training Visual */}
+                <div className="relative aspect-square bg-gradient-to-br from-purple-900 to-pink-800 rounded-2xl flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-32 h-32 mx-auto mb-4 relative">
+                      {/* Stylized Learning Icon */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full opacity-20 animate-pulse"></div>
+                      <div className="absolute inset-4 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full opacity-40"></div>
+                      <div className="absolute inset-8 bg-gradient-to-br from-pink-300 to-purple-400 rounded-full flex items-center justify-center">
+                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-pink-400 font-mono text-sm">AMAR Training</p>
+                    <p className="text-purple-300 text-xs mt-1">Learn • Practice • Excel</p>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Programs Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Our Programs
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Training Areas
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-            {programs.map((program, index) => (
-              <div key={index} className="flex items-center gap-3 bg-gray-50 rounded-xl p-4 hover:bg-purple-50 transition-colors duration-300">
-                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 font-medium text-sm">{program}</span>
-              </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -254,7 +184,7 @@ export default function About() {
               Why Choose Us
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What Sets VIRAM Apart
+              What Sets AMAR Apart
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Our training programs are built on four foundational pillars that ensure quality learning and career growth.
@@ -277,7 +207,7 @@ export default function About() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16">
@@ -322,12 +252,17 @@ export default function About() {
                 <div className="p-8">
                   <p className="text-gray-600 leading-relaxed mb-6">{member.bio}</p>
 
-                  {/* Social - LinkedIn only */}
+                  {/* Social */}
                   <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
                     <span className="text-sm text-gray-500">Connect:</span>
                     <a href={member.linkedin} className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition">
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      </svg>
+                    </a>
+                    <a href={member.twitter} className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                       </svg>
                     </a>
                   </div>
@@ -338,7 +273,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Vision Section */}
       <section className="py-20 bg-gradient-to-br from-purple-900 via-purple-800 to-pink-700 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
@@ -347,11 +282,14 @@ export default function About() {
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 text-white/90 text-sm font-medium mb-6">
+            Our Vision
+          </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Transform Your Career?
+            Shaping Tomorrow&apos;s Technology Leaders
           </h2>
           <p className="text-xl text-white/80 leading-relaxed mb-8">
-            Join our world-class training programs and become part of the next generation of technology leaders.
+            We envision a world where every technology professional has access to the knowledge, networks, and resources they need to drive innovation and create positive change. Through our workshops, we aim to democratize tech education and foster a global community of lifelong learners.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="/contact" className="inline-flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">

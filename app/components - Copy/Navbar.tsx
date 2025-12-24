@@ -35,9 +35,9 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">V</span>
+                <span className="text-white font-bold text-xl">A</span>
               </div>
-              <span className="text-2xl font-bold text-gray-800">VIRAM</span>
+              <span className="text-2xl font-bold text-gray-800">AMAR</span>
             </Link>
           </div>
 
@@ -66,20 +66,20 @@ export default function Navbar() {
               </button>
               
               {openDropdown === 'ulster' && (
-                <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
                   <Link 
                     href="/ulster-university/workshop-1" 
                     className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
                     onClick={() => setOpenDropdown(null)}
                   >
-                    Adaptive Manufacturing Workshop
+                    Workshop 1
                   </Link>
                   <Link 
                     href="/ulster-university/workshop-2" 
                     className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
                     onClick={() => setOpenDropdown(null)}
                   >
-                    Technical Symposium in Adaptive Manufacturing
+                    Workshop 2
                   </Link>
                 </div>
               )}
@@ -98,13 +98,13 @@ export default function Navbar() {
               </button>
               
               {openDropdown === 'mit-adt' && (
-                <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
                   <Link 
                     href="/mit-adt/workshop-1" 
                     className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
                     onClick={() => setOpenDropdown(null)}
                   >
-                    Industry Level Training Workshop
+                    Workshop 1
                   </Link>
                 </div>
               )}
@@ -123,42 +123,21 @@ export default function Navbar() {
               </button>
               
               {openDropdown === 'sigma' && (
-                <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
                   <Link 
                     href="/sigma/workshop-1" 
                     className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
                     onClick={() => setOpenDropdown(null)}
                   >
-                    Industry Level Training Workshop
+                    Workshop 1
                   </Link>
                 </div>
               )}
             </div>
 
-            {/* Blogs Dropdown */}
-            <div className="relative">
-              <button 
-                onClick={() => toggleDropdown('blogs')}
-                className={`flex items-center font-medium transition-colors duration-300 ${openDropdown === 'blogs' ? 'text-purple-600' : 'text-gray-700 hover:text-purple-600'}`}
-              >
-                Blogs
-                <svg className={`w-4 h-4 ml-1 transition-transform duration-200 ${openDropdown === 'blogs' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {openDropdown === 'blogs' && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
-                  <Link 
-                    href="/blogs/ai-in-manufacturing" 
-                    className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
-                    onClick={() => setOpenDropdown(null)}
-                  >
-                    AI in Manufacturing
-                  </Link>
-                </div>
-              )}
-            </div>
+            <Link href="/blogs" className="text-gray-700 font-medium hover:text-purple-600 transition-colors duration-300">
+              Blogs
+            </Link>
             <Link href="/contact" className="text-gray-700 font-medium hover:text-purple-600 transition-colors duration-300">
               Contact
             </Link>
@@ -207,10 +186,10 @@ export default function Navbar() {
                 {openDropdown === 'ulster-mobile' && (
                   <div className="pl-6 space-y-1 mt-1">
                     <Link href="/ulster-university/workshop-1" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
-                      Adaptive Manufacturing Workshop
+                      Workshop 1
                     </Link>
                     <Link href="/ulster-university/workshop-2" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
-                      Technical Symposium in Adaptive Manufacturing
+                      Workshop 2
                     </Link>
                   </div>
                 )}
@@ -230,7 +209,7 @@ export default function Navbar() {
                 {openDropdown === 'mit-adt-mobile' && (
                   <div className="pl-6 space-y-1 mt-1">
                     <Link href="/mit-adt/workshop-1" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
-                      Industry Level Training Workshop
+                      Workshop 1
                     </Link>
                   </div>
                 )}
@@ -250,31 +229,13 @@ export default function Navbar() {
                 {openDropdown === 'sigma-mobile' && (
                   <div className="pl-6 space-y-1 mt-1">
                     <Link href="/sigma/workshop-1" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
-                      Industry Level Training Workshop
+                      Workshop 1
                     </Link>
                   </div>
                 )}
               </div>
 
-              {/* Mobile Blogs Dropdown */}
-              <div>
-                <button 
-                  onClick={() => toggleDropdown('blogs-mobile')}
-                  className={`w-full flex items-center justify-between font-medium transition py-3 px-4 rounded-lg ${openDropdown === 'blogs-mobile' ? 'text-purple-600 bg-purple-50' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50'}`}
-                >
-                  Blogs
-                  <svg className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'blogs-mobile' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {openDropdown === 'blogs-mobile' && (
-                  <div className="pl-6 space-y-1 mt-1">
-                    <Link href="/blogs/ai-in-manufacturing" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
-                      AI in Manufacturing
-                    </Link>
-                  </div>
-                )}
-              </div>
+              <Link href="/blogs" className="text-gray-700 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-3 px-4 rounded-lg">Blogs</Link>
               <Link href="/contact" className="text-gray-700 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-3 px-4 rounded-lg">Contact</Link>
               <Link href="/contact" className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full font-semibold text-center mt-4">Get Started</Link>
             </div>

@@ -54,17 +54,18 @@ export default function EventHighlights() {
       name: "Ulster University",
       image: "/img/uu.png",
     },
-   {
+    // Add more collaborators here later
+     {
        name: "British Council",
        image: "/img/BC.png",
      },
-    {
+     {
        name: "MIT-ADT",
        image: "/img/mit65.png",
      },
-	     {
+	  {
        name: "MIT-ADT",
-       image: "/img/sigma.png",
+       image: "/img/mit65.png",
      },
   ];
 
@@ -135,12 +136,12 @@ export default function EventHighlights() {
                 key={index}
                 className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-purple-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer flex items-center justify-center"
               >
-                <div className="relative h-16 w-full bg-white rounded-lg p-2">
+                <div className="relative h-16 w-full">
                   <Image
                     src={collaborator.image}
                     alt={collaborator.name}
                     fill
-                    className="object-contain p-2"
+                    className="object-contain brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
                   />
                 </div>
               </div>

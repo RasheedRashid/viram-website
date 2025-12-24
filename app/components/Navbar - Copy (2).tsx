@@ -135,30 +135,9 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Blogs Dropdown */}
-            <div className="relative">
-              <button 
-                onClick={() => toggleDropdown('blogs')}
-                className={`flex items-center font-medium transition-colors duration-300 ${openDropdown === 'blogs' ? 'text-purple-600' : 'text-gray-700 hover:text-purple-600'}`}
-              >
-                Blogs
-                <svg className={`w-4 h-4 ml-1 transition-transform duration-200 ${openDropdown === 'blogs' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {openDropdown === 'blogs' && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
-                  <Link 
-                    href="/blogs/ai-in-manufacturing" 
-                    className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
-                    onClick={() => setOpenDropdown(null)}
-                  >
-                    AI in Manufacturing
-                  </Link>
-                </div>
-              )}
-            </div>
+            <Link href="/blogs" className="text-gray-700 font-medium hover:text-purple-600 transition-colors duration-300">
+              Blogs
+            </Link>
             <Link href="/contact" className="text-gray-700 font-medium hover:text-purple-600 transition-colors duration-300">
               Contact
             </Link>
@@ -256,25 +235,7 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Mobile Blogs Dropdown */}
-              <div>
-                <button 
-                  onClick={() => toggleDropdown('blogs-mobile')}
-                  className={`w-full flex items-center justify-between font-medium transition py-3 px-4 rounded-lg ${openDropdown === 'blogs-mobile' ? 'text-purple-600 bg-purple-50' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50'}`}
-                >
-                  Blogs
-                  <svg className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'blogs-mobile' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {openDropdown === 'blogs-mobile' && (
-                  <div className="pl-6 space-y-1 mt-1">
-                    <Link href="/blogs/ai-in-manufacturing" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
-                      AI in Manufacturing
-                    </Link>
-                  </div>
-                )}
-              </div>
+              <Link href="/blogs" className="text-gray-700 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-3 px-4 rounded-lg">Blogs</Link>
               <Link href="/contact" className="text-gray-700 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-3 px-4 rounded-lg">Contact</Link>
               <Link href="/contact" className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full font-semibold text-center mt-4">Get Started</Link>
             </div>

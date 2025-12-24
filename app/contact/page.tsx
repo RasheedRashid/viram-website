@@ -18,6 +18,7 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -29,29 +30,52 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage("");
 
-    const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          subject: formData.subject,
+          message: `
+Phone: ${formData.phone || "Not provided"}
+Company: ${formData.company || "Not provided"}
+Country: ${formData.country}
+Role: ${formData.profession}
+How they heard about us: ${formData.howHeard || "Not specified"}
 
-    if (response.ok) {
-      setSubmitSuccess(true);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        company: "",
-        country: "",
-        profession: "",
-        subject: "",
-        message: "",
-        howHeard: "",
+Message:
+${formData.message}
+          `,
+        }),
       });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitSuccess(true);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          company: "",
+          country: "",
+          profession: "",
+          subject: "",
+          message: "",
+          howHeard: "",
+        });
+      } else {
+        setErrorMessage(data.error || "Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      setErrorMessage("Failed to send message. Please try again.");
     }
 
     setIsSubmitting(false);
@@ -217,6 +241,7 @@ export default function Contact() {
                 >
                   <option value="">Select Country</option>
                   <option value="United Kingdom">United Kingdom</option>
+                  <option value="India">India</option>
                   <option value="Ireland">Ireland</option>
                   <option value="United States">United States</option>
                   <option value="Germany">Germany</option>
@@ -243,12 +268,10 @@ export default function Contact() {
                   style={selectStyle}
                 >
                   <option value="">Select Role</option>
-                  <option value="Attendee">Attendee</option>
-                  <option value="Speaker">Speaker</option>
-                  <option value="Sponsor">Sponsor</option>
-                  <option value="Media">Media / Press</option>
-                  <option value="Organizer">Event Organizer</option>
                   <option value="Student">Student</option>
+                  <option value="Researcher">Researcher</option>
+                  <option value="Professor">Professor</option>
+                  <option value="Industry Professional">Industry Professional</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
@@ -268,8 +291,8 @@ export default function Contact() {
                   <option value="Google Search">Google Search</option>
                   <option value="Social Media">Social Media</option>
                   <option value="Referral">Friend / Colleague</option>
-                  <option value="Event">Previous Event</option>
-                  <option value="News Article">News Article</option>
+                  <option value="University">University</option>
+                  <option value="British Council">British Council</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
@@ -291,10 +314,10 @@ export default function Contact() {
               >
                 <option value="">Select Subject</option>
                 <option value="General Inquiry">General Inquiry</option>
-                <option value="Ticket Information">Ticket Information</option>
-                <option value="Speaker Application">Speaker Application</option>
-                <option value="Sponsorship">Sponsorship Opportunity</option>
-                <option value="Workshop">Workshop Information</option>
+                <option value="Training Programs">Training Programs</option>
+                <option value="Workshop Information">Workshop Information</option>
+                <option value="Collaboration">Collaboration</option>
+                <option value="Partnership">Partnership</option>
                 <option value="Other">Other</option>
               </select>
             </div>
@@ -316,6 +339,13 @@ export default function Contact() {
                 placeholder="Tell us how we can help you..."
               />
             </div>
+
+            {/* Error Message */}
+            {errorMessage && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                {errorMessage}
+              </div>
+            )}
 
             {/* Privacy Notice */}
             <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
@@ -349,17 +379,17 @@ export default function Contact() {
               </svg>
             </div>
             <h3 className="font-bold text-black mb-1 font-['Arial'] text-sm">Email Us</h3>
-            <p className="text-purple-600 font-['Arial'] text-xs">info@morningcoffeewithAI.com</p>
+            <p className="text-purple-600 font-['Arial'] text-xs">contact@viram.uk</p>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition">
             <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
               </svg>
             </div>
-            <h3 className="font-bold text-black mb-1 font-['Arial'] text-sm">Call Us</h3>
-            <p className="text-purple-600 font-['Arial'] text-xs">+44 123 456 7890</p>
+            <h3 className="font-bold text-black mb-1 font-['Arial'] text-sm">Website</h3>
+            <p className="text-purple-600 font-['Arial'] text-xs">www.viram.uk</p>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition">
@@ -369,8 +399,8 @@ export default function Contact() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <h3 className="font-bold text-black mb-1 font-['Arial'] text-sm">Location</h3>
-            <p className="text-purple-600 font-['Arial'] text-xs">Derry~Londonderry, UK</p>
+            <h3 className="font-bold text-black mb-1 font-['Arial'] text-sm">Partners</h3>
+            <p className="text-purple-600 font-['Arial'] text-xs">UK & India</p>
           </div>
         </div>
 

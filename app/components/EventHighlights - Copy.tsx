@@ -54,18 +54,15 @@ export default function EventHighlights() {
       name: "Ulster University",
       image: "/img/uu.png",
     },
-   {
-       name: "British Council",
-       image: "/img/BC.png",
-     },
-    {
-       name: "MIT-ADT",
-       image: "/img/mit65.png",
-     },
-	     {
-       name: "MIT-ADT",
-       image: "/img/sigma.png",
-     },
+    // Add more collaborators here later
+    // {
+    //   name: "Collaborator 2",
+    //   image: "/img/collaborator2.png",
+    // },
+    // {
+    //   name: "Collaborator 3",
+    //   image: "/img/collaborator3.png",
+    // },
   ];
 
   return (
@@ -128,21 +125,19 @@ export default function EventHighlights() {
 
         {/* Collaborators Row */}
         <div className="mt-16 pt-12 border-t border-gray-800">
-          <p className="text-center text-purple-400 text-sm mb-8 uppercase tracking-wider font-semibold">Collaborators</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <p className="text-center text-gray-500 text-sm mb-8 uppercase tracking-wider">Collaborators</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {collaborators.map((collaborator, index) => (
-              <div
-                key={index}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-purple-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer flex items-center justify-center"
+              <div 
+                key={index} 
+                className="relative h-16 w-40 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
               >
-                <div className="relative h-16 w-full bg-white rounded-lg p-2">
-                  <Image
-                    src={collaborator.image}
-                    alt={collaborator.name}
-                    fill
-                    className="object-contain p-2"
-                  />
-                </div>
+                <Image
+                  src={collaborator.image}
+                  alt={collaborator.name}
+                  fill
+                  className="object-contain"
+                />
               </div>
             ))}
           </div>

@@ -2,31 +2,31 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-// live content
+
 const slides = [
   {
     image: "/img/a1.jpg",
-    title: "The Digital Conference",
-    subtitle: "January 25-27 • Derry~Londonderry",
-    description: "Join industry leaders and innovators for three days of insights, workshops, and networking opportunities.",
+    title: "Intelligent Vision-Based Robotics",
+    subtitle: "Adaptive Manufacturing Solutions",
+    description: "Transform your production with AI-powered robotic systems that see, learn, and adapt to real-world manufacturing challenges.",
   },
   {
     image: "/img/a2.jpg",
-    title: "Learn From Experts",
-    subtitle: "10+ AI-Experts Speakers",
-    description: "Gain valuable knowledge from top speakers who are shaping the future of technology and business.",
+    title: "See. Adapt. Manufacture.",
+    subtitle: "Computer Vision Technology",
+    description: "Our advanced vision systems detect defects, guide precision assembly, and optimize quality control with unprecedented accuracy.",
   },
   {
     image: "/img/a3.jpg",
-    title: "Hands-On Workshops",
-    subtitle: "Interactive Sessions",
-    description: "Participate in practical workshops designed to enhance your skills and expand your network.",
+    title: "The Future of Manufacturing",
+    subtitle: "Autonomous Robotics",
+    description: "Deploy self-learning robots that continuously improve processes, reduce downtime, and maximize production efficiency.",
   },
 ];
-// live session
+
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [attendees, setAttendees] = useState(20);
+  const [robotsDeployed, setRobotsDeployed] = useState(200);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,10 +36,10 @@ export default function HeroSlider() {
   }, []);
 
   useEffect(() => {
-    const attendeeTimer = setInterval(() => {
-      setAttendees((prev) => prev + Math.floor(Math.random() * 3));
-    }, 8000);
-    return () => clearInterval(attendeeTimer);
+    const deployTimer = setInterval(() => {
+      setRobotsDeployed((prev) => prev + Math.floor(Math.random() * 2));
+    }, 10000);
+    return () => clearInterval(deployTimer);
   }, []);
 
   const goToSlide = (index: number) => {
@@ -68,7 +68,7 @@ export default function HeroSlider() {
           
           {/* Left Side - Text Content */}
           <div className="text-left z-10">
-            {/* Event Badge */}
+            {/* Badge */}
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2.5 mb-6">
               <span className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></span>
               <span className="text-white/90 text-sm font-medium">{slides[currentSlide].subtitle}</span>
@@ -87,33 +87,33 @@ export default function HeroSlider() {
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 mb-10">
               <a href="/contact" className="inline-flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
-                Join Event
+                Get Started
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-              <a href="#about" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
-                Learn More
+              <a href="/solutions" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
+                Our Solutions
               </a>
             </div>
 
             {/* Stats */}
             <div className="flex gap-8 pt-8 border-t border-white/10">
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">10+</div>
-                <div className="text-white/60 text-sm mt-1">Speakers</div>
+                <div className="text-2xl font-bold text-white">15+</div>
+                <div className="text-white/60 text-sm mt-1">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">3</div>
-                <div className="text-white/60 text-sm mt-1">Days</div>
+                <div className="text-2xl font-bold text-white">50+</div>
+                <div className="text-white/60 text-sm mt-1">Partners</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">10+</div>
-                <div className="text-white/60 text-sm mt-1">Workshops</div>
+                <div className="text-2xl font-bold text-white">99.7%</div>
+                <div className="text-white/60 text-sm mt-1">Uptime</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">{attendees.toLocaleString()}</div>
-                <div className="text-white/60 text-sm mt-1">Registered</div>
+                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">{robotsDeployed}+</div>
+                <div className="text-white/60 text-sm mt-1">Robots Deployed</div>
               </div>
             </div>
           </div>
@@ -137,29 +137,41 @@ export default function HeroSlider() {
                   <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent"></div>
                 </div>
 
-                {/* Live Attendees Badge */}
+                {/* System Status Badge */}
                 <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md rounded-2xl py-3 px-4 shadow-xl">
                   <div className="flex items-center gap-3">
                     <div className="flex -space-x-2">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">B</div>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-yellow-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">C</div>
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 border-2 border-white flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 border-2 border-white flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                      </div>
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-yellow-400 border-2 border-white flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
                     </div>
                     <div>
-                      <div className="font-bold text-gray-900 text-sm">{attendees.toLocaleString()} Attending</div>
+                      <div className="font-bold text-gray-900 text-sm">{robotsDeployed}+ Systems Active</div>
                       <div className="text-gray-500 text-xs flex items-center">
                         <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1 animate-pulse"></span>
-                        Live count
+                        All systems operational
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Event Date Badge */}
+                {/* Technology Badge */}
                 <div className="absolute bottom-4 right-4 bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl py-3 px-5 shadow-xl">
                   <div className="text-white text-center">
-                    <div className="text-xl font-bold">25-27</div>
-                    <div className="text-xs font-medium opacity-90">JAN 2026</div>
+                    <div className="text-xl font-bold">AI</div>
+                    <div className="text-xs font-medium opacity-90">Powered</div>
                   </div>
                 </div>
               </div>

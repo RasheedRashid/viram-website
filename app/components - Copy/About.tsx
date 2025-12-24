@@ -5,10 +5,10 @@ export default function About() {
     <section className="py-20 bg-white" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header - UPDATED FOR VIRAM */}
+        {/* Section Header - UPDATED FOR AMAR */}
         <div className="text-center mb-16">
           <span className="inline-block bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            About VIRAM
+            About AMAR
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Adaptive Manufacturing with Autonomous Robotics
