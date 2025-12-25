@@ -6,21 +6,21 @@ import Image from "next/image";
 const slides = [
   {
     image: "/img/a1.jpg",
-    title: "The Digital Conference",
+    title: "VIRAM Workshop 2026",
     subtitle: "January 25-27 • Derry~Londonderry",
-    description: "Join industry leaders and innovators for three days of insights, workshops, and networking opportunities.",
+    description: "Exploring Vision-Integrated Robotics for Adaptive Manufacturing. Join us for cutting-edge insights into AI-powered automation.",
   },
   {
     image: "/img/a2.jpg",
-    title: "Learn From Experts",
-    subtitle: "10+ AI-Experts Speakers",
-    description: "Gain valuable knowledge from top speakers who are shaping the future of technology and business.",
+    title: "Robotics & AI Innovation",
+    subtitle: "10+ Industry Expert Speakers",
+    description: "Learn from leaders in computer vision, robotics, and smart manufacturing who are shaping the future of Industry 4.0.",
   },
   {
     image: "/img/a3.jpg",
-    title: "Hands-On Workshops",
-    subtitle: "Interactive Sessions",
-    description: "Participate in practical workshops designed to enhance your skills and expand your network.",
+    title: "Hands-On Sessions",
+    subtitle: "Interactive Technical Training",
+    description: "Build real robotics projects, explore adaptive manufacturing systems, and master vision-integrated automation techniques.",
   },
 ];
 // live session
@@ -31,7 +31,7 @@ export default function HeroSlider() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 35);
     return () => clearInterval(timer);
   }, []);
 
