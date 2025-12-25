@@ -6,7 +6,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { name, email, organization, role, source, subject, message } = body;
 
-    // Validate required fields
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -14,21 +13,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter using AWS SES SMTP
     const transporter = nodemailer.createTransport({
-      host: "email-smtp.eu-north-1.amazonaws.com",
-      port: 587,
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || "587"),
       secure: false,
       auth: {
-        user: "AKIAXJDRPHKXXQUOBFBI",
-        pass: "BP/3UC8oSjUy+RWIDlthgzJtbRv7MlX7hHdsOi3r7PqG",
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
-    // Email content
     const mailOptions = {
-      from: "contact@viram.uk",
-      to: "contact@viram.uk",
+      from: process.env.EMAIL_FROM,
+      to: process.env.EMAIL_FROM,
       replyTo: email,
       subject: `VIRAM Contact: ${subject}`,
       html: `
@@ -77,7 +74,6 @@ export async function POST(request: NextRequest) {
       `,
     };
 
-    // Send email
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
