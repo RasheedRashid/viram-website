@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VIMAR",
+  title: "VIRAM",
   description: "Supporting manufacturers to become more competitive",
 };
 
