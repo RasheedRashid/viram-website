@@ -1,17 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function HeroSlider() {
-  const [attendees, setAttendees] = useState(20);
-
-  useEffect(() => {
-    const attendeeTimer = setInterval(() => {
-      setAttendees((prev) => prev + Math.floor(Math.random() * 3));
-    }, 8000);
-    return () => clearInterval(attendeeTimer);
-  }, []);
 
   return (
     <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-pink-700 overflow-hidden">
@@ -80,64 +71,30 @@ export default function HeroSlider() {
                 <div className="text-2xl font-bold text-white">10+</div>
                 <div className="text-white/60 text-sm mt-1">Workshops</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">{attendees.toLocaleString()}</div>
-                <div className="text-white/60 text-sm mt-1">Registered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-400">{Math.max(100 - attendees, 0)}</div>
-                <div className="text-white/60 text-sm mt-1">Seats Left</div>
-              </div>
             </div>
           </div>
 
           {/* Right Side - Image */}
-          <div className="relative h-[450px] hidden lg:block">
+          <div className="relative h-[500px] hidden lg:block">
             {/* Main Image */}
             <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10">
               <Image
                 src="/img/v1.jpg"
                 alt="VIRAM Workshop 2026"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
                 priority
+                unoptimized
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent"></div>
-            </div>
-
-            {/* Live Attendees Badge */}
-            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md rounded-2xl py-3 px-4 shadow-xl">
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">B</div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-yellow-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">C</div>
-                </div>
-                <div>
-                  <div className="font-bold text-gray-900 text-sm">{attendees.toLocaleString()} Attending</div>
-                  <div className="text-gray-500 text-xs flex items-center">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1 animate-pulse"></span>
-                    Live count
-                  </div>
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
             </div>
 
             {/* Event Date Badge */}
-            <div className="absolute bottom-4 right-4 bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl py-3 px-5 shadow-xl">
+            <div className="absolute bottom-6 right-6 bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl py-4 px-6 shadow-xl">
               <div className="text-white text-center">
-                <div className="text-xl font-bold">25-27</div>
-                <div className="text-xs font-medium opacity-90">JAN 2026</div>
-              </div>
-            </div>
-
-            {/* Limited Seats Badge */}
-            <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-rose-600 rounded-full py-2 px-4 shadow-xl animate-pulse">
-              <div className="text-white text-center flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span className="text-xs font-bold">Limited Seats</span>
+                <div className="text-2xl font-bold">25-27</div>
+                <div className="text-sm font-medium opacity-90">JAN 2026</div>
               </div>
             </div>
           </div>
