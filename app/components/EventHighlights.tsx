@@ -49,23 +49,28 @@ export default function EventHighlights() {
     },
   ];
 
+  // Partner - British Council
+  const partners = [
+    {
+      name: "British Council",
+      image: "/img/BC.png",
+    },
+  ];
+
+  // Collaborators - Ulster University, MIT-ADT, Sigma
   const collaborators = [
     {
       name: "Ulster University",
       image: "/img/uu.png",
     },
-   {
-       name: "British Council",
-       image: "/img/BC.png",
-     },
     {
-       name: "MIT-ADT",
-       image: "/img/mit65.png",
-     },
-	     {
-       name: "MIT-ADT",
-       image: "/img/sigma.png",
-     },
+      name: "MIT-ADT",
+      image: "/img/mit65.png",
+    },
+    {
+      name: "Sigma",
+      image: "/img/sigma.png",
+    },
   ];
 
   return (
@@ -126,10 +131,32 @@ export default function EventHighlights() {
           ))}
         </div>
 
-        {/* Collaborators Row */}
+        {/* Partner Section */}
         <div className="mt-16 pt-12 border-t border-gray-800">
+          <p className="text-center text-pink-400 text-sm mb-8 uppercase tracking-wider font-semibold">Partner</p>
+          <div className="flex justify-center">
+            {partners.map((partner, index) => (
+              <div
+                key={index}
+                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-pink-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer flex items-center justify-center w-full max-w-sm"
+              >
+                <div className="relative h-16 w-full bg-white rounded-lg p-2">
+                  <Image
+                    src={partner.image}
+                    alt={partner.name}
+                    fill
+                    className="object-contain p-2"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Collaborators Section */}
+        <div className="mt-12 pt-12 border-t border-gray-800">
           <p className="text-center text-purple-400 text-sm mb-8 uppercase tracking-wider font-semibold">Collaborators</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {collaborators.map((collaborator, index) => (
               <div
                 key={index}
