@@ -52,12 +52,6 @@ export default function HeroSlider() {
           
           {/* Left Side - Text Content */}
           <div className="text-left z-10">
-            {/* Event Badge */}
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2.5 mb-6">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></span>
-              <span className="text-white/90 text-sm font-medium">January 25-27 • Derry~Londonderry</span>
-            </div>
-
             {/* Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
               {slides[currentSlide].title}
@@ -90,17 +84,16 @@ export default function HeroSlider() {
                 className={`absolute inset-0 transition-all duration-700 ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}
               >
                 {/* Main Image */}
-                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-white">
                   <Image
                     src={slide.image}
                     alt={slide.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
+                    className="object-contain p-4"
                     priority={index === 0}
                     unoptimized
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
                 </div>
               </div>
             ))}
