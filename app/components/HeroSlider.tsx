@@ -27,6 +27,16 @@ export default function HeroSlider() {
           
           {/* Left Side - Text Content */}
           <div className="text-left z-10">
+            {/* Free Registration Badge */}
+            <div className="inline-flex items-center bg-gradient-to-r from-green-400 to-emerald-500 text-white rounded-full px-4 py-1.5 mb-4 text-sm font-bold shadow-lg shadow-green-500/30">
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              FREE REGISTRATION
+              <span className="mx-2">•</span>
+              <span className="text-yellow-200">Limited Seats!</span>
+            </div>
+
             {/* Event Badge */}
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2.5 mb-6">
               <span className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></span>
@@ -46,7 +56,7 @@ export default function HeroSlider() {
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 mb-10">
               <a href="/contact" className="inline-flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
-                Join Event
+                Register Free
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -57,7 +67,7 @@ export default function HeroSlider() {
             </div>
 
             {/* Stats */}
-            <div className="flex gap-8 pt-8 border-t border-white/10">
+            <div className="flex flex-wrap gap-6 sm:gap-8 pt-8 border-t border-white/10">
               <div className="text-center">
                 <div className="text-2xl font-bold text-white">10+</div>
                 <div className="text-white/60 text-sm mt-1">Speakers</div>
@@ -73,6 +83,10 @@ export default function HeroSlider() {
               <div className="text-center">
                 <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">{attendees.toLocaleString()}</div>
                 <div className="text-white/60 text-sm mt-1">Registered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-400">{Math.max(100 - attendees, 0)}</div>
+                <div className="text-white/60 text-sm mt-1">Seats Left</div>
               </div>
             </div>
           </div>
@@ -114,6 +128,16 @@ export default function HeroSlider() {
               <div className="text-white text-center">
                 <div className="text-xl font-bold">25-27</div>
                 <div className="text-xs font-medium opacity-90">JAN 2026</div>
+              </div>
+            </div>
+
+            {/* Limited Seats Badge */}
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-rose-600 rounded-full py-2 px-4 shadow-xl animate-pulse">
+              <div className="text-white text-center flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-xs font-bold">Limited Seats</span>
               </div>
             </div>
           </div>
