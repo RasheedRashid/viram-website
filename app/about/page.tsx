@@ -56,9 +56,6 @@ export default function About() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 text-white/90 text-sm font-medium mb-6">
-            Empowering Tech Professionals Since 2020
-          </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-400">VIRAM</span>
           </h1>
