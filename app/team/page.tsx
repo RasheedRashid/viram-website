@@ -19,7 +19,7 @@ export default function Team() {
   const mitTeam = [
     {
       name: "Dr. Mayur Sawant",
-      role: "Associate Professor",
+      role: "Assistant Professor",
       image: "/img/MIT/mayur.png",
       linkedin: "#",
     },
