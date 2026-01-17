@@ -2,38 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-// live content
-const slides = [
-  {
-    image: "/img/a1.jpg",
-    title: "VIRAM Workshop 2026",
-    subtitle: "January 25-27 • Derry~Londonderry",
-    description: "Exploring Vision-Integrated Robotics for Adaptive Manufacturing. Join us for cutting-edge insights into AI-powered automation.",
-  },
-  {
-    image: "/img/a2.jpg",
-    title: "Robotics & AI Innovation",
-    subtitle: "10+ Industry Expert Speakers",
-    description: "Learn from leaders in computer vision, robotics, and smart manufacturing who are shaping the future of Industry 4.0.",
-  },
-  {
-    image: "/img/a3.jpg",
-    title: "Hands-On Sessions",
-    subtitle: "Interactive Technical Training",
-    description: "Build real robotics projects, explore adaptive manufacturing systems, and master vision-integrated automation techniques.",
-  },
-];
-// live session
-export default function HeroSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [attendees, setAttendees] = useState(20);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+export default function HeroSlider() {
+  const [attendees, setAttendees] = useState(20);
 
   useEffect(() => {
     const attendeeTimer = setInterval(() => {
@@ -41,18 +12,6 @@ export default function HeroSlider() {
     }, 8000);
     return () => clearInterval(attendeeTimer);
   }, []);
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
 
   return (
     <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-pink-700 overflow-hidden">
@@ -71,17 +30,17 @@ export default function HeroSlider() {
             {/* Event Badge */}
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2.5 mb-6">
               <span className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></span>
-              <span className="text-white/90 text-sm font-medium">{slides[currentSlide].subtitle}</span>
+              <span className="text-white/90 text-sm font-medium">January 25-27 • Derry~Londonderry</span>
             </div>
 
             {/* Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
-              {slides[currentSlide].title}
+              VIRAM Workshop 2026
             </h1>
 
             {/* Description */}
             <p className="text-lg text-white/80 mb-8 max-w-lg leading-relaxed">
-              {slides[currentSlide].description}
+              Exploring Vision-Integrated Robotics for Adaptive Manufacturing. Join us for cutting-edge insights into AI-powered automation.
             </p>
 
             {/* Buttons */}
@@ -120,76 +79,45 @@ export default function HeroSlider() {
 
           {/* Right Side - Image */}
           <div className="relative h-[450px] hidden lg:block">
-            {slides.map((slide, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 transition-all duration-700 ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}
-              >
-                {/* Main Image */}
-                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-                  <Image
-                    src={slide.image}
-                    alt={slide.title}
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent"></div>
-                </div>
+            {/* Main Image */}
+            <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+              <Image
+                src="/img/v1.jpg"
+                alt="VIRAM Workshop 2026"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent"></div>
+            </div>
 
-                {/* Live Attendees Badge */}
-                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md rounded-2xl py-3 px-4 shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="flex -space-x-2">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">B</div>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-yellow-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">C</div>
-                    </div>
-                    <div>
-                      <div className="font-bold text-gray-900 text-sm">{attendees.toLocaleString()} Attending</div>
-                      <div className="text-gray-500 text-xs flex items-center">
-                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1 animate-pulse"></span>
-                        Live count
-                      </div>
-                    </div>
-                  </div>
+            {/* Live Attendees Badge */}
+            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md rounded-2xl py-3 px-4 shadow-xl">
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">B</div>
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-yellow-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">C</div>
                 </div>
-
-                {/* Event Date Badge */}
-                <div className="absolute bottom-4 right-4 bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl py-3 px-5 shadow-xl">
-                  <div className="text-white text-center">
-                    <div className="text-xl font-bold">25-27</div>
-                    <div className="text-xs font-medium opacity-90">JAN 2026</div>
+                <div>
+                  <div className="font-bold text-gray-900 text-sm">{attendees.toLocaleString()} Attending</div>
+                  <div className="text-gray-500 text-xs flex items-center">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1 animate-pulse"></span>
+                    Live count
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Event Date Badge */}
+            <div className="absolute bottom-4 right-4 bg-gradient-to-br from-orange-400 to-pink-500 rounded-2xl py-3 px-5 shadow-xl">
+              <div className="text-white text-center">
+                <div className="text-xl font-bold">25-27</div>
+                <div className="text-xs font-medium opacity-90">JAN 2026</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Navigation Arrows */}
-      <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-4 rounded-full transition hidden md:flex items-center justify-center">
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-
-      <button onClick={nextSlide} className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-4 rounded-full transition hidden md:flex items-center justify-center">
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-
-      {/* Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-gradient-to-r from-orange-400 to-pink-500 w-10" : "bg-white/30 w-2.5 hover:bg-white/50"}`}
-          />
-        ))}
       </div>
     </section>
   );
