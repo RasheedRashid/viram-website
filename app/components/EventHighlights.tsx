@@ -131,47 +131,64 @@ export default function EventHighlights() {
           ))}
         </div>
 
-        {/* Partner Section */}
+        {/* Combined Partner & Collaborators Section */}
         <div className="mt-16 pt-12 border-t border-gray-800">
-          <p className="text-center text-pink-400 text-sm mb-8 uppercase tracking-wider font-semibold">Partner</p>
-          <div className="flex justify-center">
-            {partners.map((partner, index) => (
-              <div
-                key={index}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-pink-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer flex items-center justify-center w-full max-w-sm"
-              >
-                <div className="relative h-16 w-full bg-white rounded-lg p-2">
-                  <Image
-                    src={partner.image}
-                    alt={partner.name}
-                    fill
-                    className="object-contain p-2"
-                  />
-                </div>
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0">
+            
+            {/* Partner Section */}
+            <div className="flex flex-col items-center w-full lg:w-auto lg:px-12">
+              <p className="text-pink-400 text-sm mb-6 uppercase tracking-wider font-semibold">Partner</p>
+              <div className="flex justify-center">
+                {partners.map((partner, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-pink-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer flex items-center justify-center w-full max-w-xs"
+                  >
+                    <div className="relative h-16 w-48 bg-white rounded-lg p-2">
+                      <Image
+                        src={partner.image}
+                        alt={partner.name}
+                        fill
+                        className="object-contain p-2"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
 
-        {/* Collaborators Section */}
-        <div className="mt-12 pt-12 border-t border-gray-800">
-          <p className="text-center text-purple-400 text-sm mb-8 uppercase tracking-wider font-semibold">Collaborators</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {collaborators.map((collaborator, index) => (
-              <div
-                key={index}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-purple-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer flex items-center justify-center"
-              >
-                <div className="relative h-16 w-full bg-white rounded-lg p-2">
-                  <Image
-                    src={collaborator.image}
-                    alt={collaborator.name}
-                    fill
-                    className="object-contain p-2"
-                  />
-                </div>
+            {/* Divider */}
+            <div className="hidden lg:flex items-center self-stretch px-8">
+              <div className="w-px h-full min-h-[120px] bg-gradient-to-b from-transparent via-gray-600 to-transparent"></div>
+            </div>
+            
+            {/* Horizontal Divider for mobile */}
+            <div className="lg:hidden w-full flex items-center justify-center py-4">
+              <div className="h-px w-3/4 bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
+            </div>
+
+            {/* Collaborators Section */}
+            <div className="flex flex-col items-center w-full lg:w-auto lg:px-12">
+              <p className="text-purple-400 text-sm mb-6 uppercase tracking-wider font-semibold">Collaborators</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                {collaborators.map((collaborator, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-purple-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer flex items-center justify-center"
+                  >
+                    <div className="relative h-16 w-40 bg-white rounded-lg p-2">
+                      <Image
+                        src={collaborator.image}
+                        alt={collaborator.name}
+                        fill
+                        className="object-contain p-2"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
           </div>
         </div>
       </div>
