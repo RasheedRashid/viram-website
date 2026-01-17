@@ -100,32 +100,39 @@ export default function Navbar() {
               {openDropdown === 'mit-adt' && (
                 <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
                   <Link 
-                    href="/mit-adt/workshop-1" 
+                    href="/mit-adt/value-added-courses" 
                     className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
                     onClick={() => setOpenDropdown(null)}
                   >
-                    Industry Level Training Workshop
+                    Value Added Courses
+                  </Link>
+                  <Link 
+                    href="/mit-adt/industry-academia-networking" 
+                    className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
+                    onClick={() => setOpenDropdown(null)}
+                  >
+                    Industry Academia Networking Event
                   </Link>
                 </div>
               )}
             </div>
 
-            {/* Sigma Dropdown */}
+            {/* SSIGMA Dropdown */}
             <div className="relative">
               <button 
-                onClick={() => toggleDropdown('sigma')}
-                className={`flex items-center font-medium transition-colors duration-300 ${openDropdown === 'sigma' ? 'text-purple-600' : 'text-gray-700 hover:text-purple-600'}`}
+                onClick={() => toggleDropdown('ssigma')}
+                className={`flex items-center font-medium transition-colors duration-300 ${openDropdown === 'ssigma' ? 'text-purple-600' : 'text-gray-700 hover:text-purple-600'}`}
               >
-                Sigma
-                <svg className={`w-4 h-4 ml-1 transition-transform duration-200 ${openDropdown === 'sigma' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                SSIGMA
+                <svg className={`w-4 h-4 ml-1 transition-transform duration-200 ${openDropdown === 'ssigma' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               
-              {openDropdown === 'sigma' && (
+              {openDropdown === 'ssigma' && (
                 <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
                   <Link 
-                    href="/sigma/workshop-1" 
+                    href="/ssigma/workshop-1" 
                     className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors duration-200"
                     onClick={() => setOpenDropdown(null)}
                   >
@@ -229,27 +236,30 @@ export default function Navbar() {
                 </button>
                 {openDropdown === 'mit-adt-mobile' && (
                   <div className="pl-6 space-y-1 mt-1">
-                    <Link href="/mit-adt/workshop-1" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
-                      Industry Level Training Workshop
+                    <Link href="/mit-adt/value-added-courses" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
+                      Value Added Courses
+                    </Link>
+                    <Link href="/mit-adt/industry-academia-networking" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
+                      Industry Academia Networking Event
                     </Link>
                   </div>
                 )}
               </div>
 
-              {/* Mobile Sigma Dropdown */}
+              {/* Mobile SSIGMA Dropdown */}
               <div>
                 <button 
-                  onClick={() => toggleDropdown('sigma-mobile')}
-                  className={`w-full flex items-center justify-between font-medium transition py-3 px-4 rounded-lg ${openDropdown === 'sigma-mobile' ? 'text-purple-600 bg-purple-50' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50'}`}
+                  onClick={() => toggleDropdown('ssigma-mobile')}
+                  className={`w-full flex items-center justify-between font-medium transition py-3 px-4 rounded-lg ${openDropdown === 'ssigma-mobile' ? 'text-purple-600 bg-purple-50' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50'}`}
                 >
-                  Sigma
-                  <svg className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'sigma-mobile' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  SSIGMA
+                  <svg className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'ssigma-mobile' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                {openDropdown === 'sigma-mobile' && (
+                {openDropdown === 'ssigma-mobile' && (
                   <div className="pl-6 space-y-1 mt-1">
-                    <Link href="/sigma/workshop-1" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
+                    <Link href="/ssigma/workshop-1" className="block text-gray-600 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-2 px-4 rounded-lg" onClick={() => setIsMenuOpen(false)}>
                       Industry Level Training Workshop
                     </Link>
                   </div>
