@@ -49,8 +49,8 @@ export default function EventHighlights() {
     },
   ];
 
-  // Partner - British Council
-  const partners = [
+  // Funder - British Council
+  const funders = [
     {
       name: "British Council",
       image: "/img/BC.png",
@@ -131,23 +131,23 @@ export default function EventHighlights() {
           ))}
         </div>
 
-        {/* Combined Partner & Collaborators Section */}
+        {/* Combined Funder & Collaborators Section */}
         <div className="mt-16 pt-12 border-t border-gray-800">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0">
             
-            {/* Partner Section */}
+            {/* Funder Section */}
             <div className="flex flex-col items-center w-full lg:w-auto lg:px-12">
-              <p className="text-pink-400 text-sm mb-6 uppercase tracking-wider font-semibold">Partner</p>
+              <p className="text-pink-400 text-sm mb-6 uppercase tracking-wider font-semibold">Funder</p>
               <div className="flex justify-center">
-                {partners.map((partner, index) => (
+                {funders.map((funder, index) => (
                   <div
                     key={index}
                     className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-pink-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer flex items-center justify-center w-full max-w-xs"
                   >
                     <div className="relative h-16 w-48 bg-white rounded-lg p-2">
                       <Image
-                        src={partner.image}
-                        alt={partner.name}
+                        src={funder.image}
+                        alt={funder.name}
                         fill
                         className="object-contain p-2"
                       />
