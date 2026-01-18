@@ -5,7 +5,7 @@ export default function Team() {
     {
       name: "Dr. Deepika Nikam",
       role: "Lecturer",
-      image: "/img/ulsterteam/deepika.jpg",
+      image: "/img/ulsterteam/deepika.jpeg",
       linkedin: "#",
     },
     {
