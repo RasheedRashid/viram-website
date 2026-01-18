@@ -11,54 +11,174 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Helper function to escape CSV values
+function escapeCSV(value: string): string {
+  if (!value) return "";
+  if (value.includes(",") || value.includes('"') || value.includes("\n")) {
+    return `"${value.replace(/"/g, '""')}"`;
+  }
+  return value;
+}
+
+// Generate CSV content
+function generateCSV(data: Record<string, string>): string {
+  const headers = [
+    "First Name",
+    "Last Name",
+    "Email",
+    "Phone",
+    "Company/Organization",
+    "Country/Region",
+    "Gender",
+    "Role",
+    "Workshop",
+    "How Did You Hear",
+    "Registration Date",
+  ];
+
+  const values = [
+    escapeCSV(data.firstName || ""),
+    escapeCSV(data.lastName || ""),
+    escapeCSV(data.email || ""),
+    escapeCSV(data.phone || ""),
+    escapeCSV(data.company || ""),
+    escapeCSV(data.country || ""),
+    escapeCSV(data.gender || ""),
+    escapeCSV(data.role || ""),
+    escapeCSV(data.workshop || ""),
+    escapeCSV(data.howDidYouHear || ""),
+    escapeCSV(new Date().toLocaleString("en-GB")),
+  ];
+
+  return headers.join(",") + "\n" + values.join(",");
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, organization, role, source, subject, message } = body;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      company,
+      country,
+      gender,
+      role,
+      workshop,
+      howDidYouHear,
+    } = body;
 
-    if (!name || !email || !subject || !message) {
+    // Validate required fields
+    if (!firstName || !lastName || !email || !country || !gender || !role || !workshop) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
+    const fullName = `${firstName} ${lastName}`;
+    const timestamp = new Date().toISOString().split("T")[0];
+
+    // Generate CSV
+    const csvContent = generateCSV(body);
+
     const mailOptions = {
       from: "contact@viram.uk",
       to: "contact@viram.uk",
       replyTo: email,
-      subject: `VIRAM Contact: ${subject}`,
+      subject: `VIRAM Workshop Registration: ${fullName} - ${workshop}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%); padding: 20px; border-radius: 10px 10px 0 0;">
-            <h1 style="color: white; margin: 0;">New Contact Form Submission</h1>
+            <h1 style="color: white; margin: 0; font-size: 24px;">New Workshop Registration</h1>
+            <p style="color: rgba(255,255,255,0.9); margin: 5px 0 0 0;">VIRAM Workshop Registration Form</p>
           </div>
-          <div style="background: #f9fafb; padding: 20px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Organization:</strong> ${organization || "Not provided"}</p>
-            <p><strong>Role:</strong> ${role || "Not provided"}</p>
-            <p><strong>Source:</strong> ${source || "Not provided"}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Message:</strong></p>
-            <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
-              <p style="white-space: pre-wrap;">${message}</p>
+          <div style="background: #f9fafb; padding: 25px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+            
+            <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #e5e7eb; margin-bottom: 20px;">
+              <h2 style="color: #9333ea; margin: 0 0 15px 0; font-size: 18px; border-bottom: 2px solid #f3e8ff; padding-bottom: 10px;">Personal Information</h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280; width: 40%;">Full Name:</td>
+                  <td style="padding: 8px 0; color: #111827; font-weight: 600;">${fullName}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280;">Email:</td>
+                  <td style="padding: 8px 0; color: #111827;"><a href="mailto:${email}" style="color: #9333ea;">${email}</a></td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280;">Phone:</td>
+                  <td style="padding: 8px 0; color: #111827;">${phone || "Not provided"}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280;">Gender:</td>
+                  <td style="padding: 8px 0; color: #111827;">${gender}</td>
+                </tr>
+              </table>
             </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #e5e7eb; margin-bottom: 20px;">
+              <h2 style="color: #9333ea; margin: 0 0 15px 0; font-size: 18px; border-bottom: 2px solid #f3e8ff; padding-bottom: 10px;">Professional Details</h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280; width: 40%;">Company/Organization:</td>
+                  <td style="padding: 8px 0; color: #111827;">${company || "Not provided"}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280;">Country/Region:</td>
+                  <td style="padding: 8px 0; color: #111827;">${country}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280;">Role:</td>
+                  <td style="padding: 8px 0; color: #111827;">${role}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 100%); padding: 20px; border-radius: 8px; border: 1px solid #f5d0fe; margin-bottom: 20px;">
+              <h2 style="color: #9333ea; margin: 0 0 15px 0; font-size: 18px;">Workshop Selected</h2>
+              <p style="color: #111827; font-size: 16px; font-weight: 600; margin: 0; padding: 12px; background: white; border-radius: 6px;">${workshop}</p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #e5e7eb;">
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280; width: 40%;">How did they hear about us:</td>
+                  <td style="padding: 8px 0; color: #111827;">${howDidYouHear || "Not provided"}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280;">Registration Date:</td>
+                  <td style="padding: 8px 0; color: #111827;">${new Date().toLocaleString("en-GB")}</td>
+                </tr>
+              </table>
+            </div>
+
+            <p style="color: #6b7280; font-size: 12px; margin-top: 20px; text-align: center;">
+              📎 CSV file attached for your records
+            </p>
           </div>
         </div>
       `,
+      attachments: [
+        {
+          filename: `viram-registration-${firstName.toLowerCase()}-${lastName.toLowerCase()}-${timestamp}.csv`,
+          content: csvContent,
+          contentType: "text/csv",
+        },
+      ],
     };
 
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
-      { message: "Email sent successfully" },
+      { message: "Registration submitted successfully" },
       { status: 200 }
     );
   } catch (error) {
     console.error("Error sending email:", error);
     return NextResponse.json(
-      { error: `Email failed: ${error instanceof Error ? error.message : "Unknown error"}` },
+      { error: `Registration failed: ${error instanceof Error ? error.message : "Unknown error"}` },
       { status: 500 }
     );
   }
