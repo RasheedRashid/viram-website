@@ -166,15 +166,12 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            <Link href="/contact" className="text-gray-700 font-medium hover:text-purple-600 transition-colors duration-300">
-              Contact
-            </Link>
           </div>
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/contact" className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/30 hover:scale-105 transition-all duration-300">
-              Get Started
+              Register
             </Link>
           </div>
 
@@ -285,8 +282,7 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-              <Link href="/contact" className="text-gray-700 font-medium hover:text-purple-600 hover:bg-purple-50 transition py-3 px-4 rounded-lg">Contact</Link>
-              <Link href="/contact" className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full font-semibold text-center mt-4">Get Started</Link>
+              <Link href="/contact" className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full font-semibold text-center mt-4">Register</Link>
             </div>
           </div>
         )}
