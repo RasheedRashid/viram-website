@@ -66,7 +66,7 @@ export default function EventHighlights() {
     },
     {
       name: "MIT-ADT",
-      image: "/img/mit65.png",
+      image: "/img/mit65.jpg",
     },
     {
       name: "Sigma",
