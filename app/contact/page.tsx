@@ -85,6 +85,7 @@ export default function ContactForm() {
     howDidYouHear: "",
     workshop: "",
     attendanceMode: "",
+    disability: "",
   });
 
   const [status, setStatus] = useState<{
@@ -157,6 +158,7 @@ export default function ContactForm() {
           howDidYouHear: "",
           workshop: "",
           attendanceMode: "",
+          disability: "",
         });
       } else {
         setStatus({
@@ -505,6 +507,28 @@ export default function ContactForm() {
                 <option value="Search Engine">Search Engine</option>
                 <option value="Email">Email</option>
                 <option value="Other">Other</option>
+              </select>
+            </div>
+
+            {/* Disability Declaration */}
+            <div>
+              <label htmlFor="disability" className="block text-sm font-semibold text-gray-700 mb-2">
+                Do you have a disability?
+              </label>
+              <p className="text-xs text-gray-500 mb-3 leading-relaxed">
+                As defined by the UN Convention on the Rights of Persons with Disabilities: &quot;Persons with disabilities include those who have long-term physical, mental, intellectual or sensory impairments which in interaction with various barriers may hinder their full and effective participation in society on an equal basis with others.&quot;
+              </p>
+              <select
+                id="disability"
+                name="disability"
+                value={formData.disability}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition appearance-none cursor-pointer"
+              >
+                <option value="" disabled>Select Option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Prefer not to say">Prefer not to say</option>
               </select>
             </div>
 
