@@ -66,7 +66,7 @@ export default function EventHighlights() {
     },
     {
       name: "MIT-ADT",
-      image: "/img/mit65.jpg",
+      image: "/img/mit65.png",
     },
     {
       name: "Sigma",
@@ -155,10 +155,10 @@ export default function EventHighlights() {
                   Register Now — Free!
                 </Link>
                 <Link
-                  href="/workshop"
+                  href="/ulster-university/workshop-1"
                   className="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all duration-300"
                 >
-                  View Details
+                  View Details →
                 </Link>
               </div>
             </div>
