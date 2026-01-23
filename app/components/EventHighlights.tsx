@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function EventHighlights() {
   const workshops = [
@@ -76,6 +77,93 @@ export default function EventHighlights() {
   return (
     <section className="bg-gray-900 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Featured Workshop Banner */}
+        <div className="mb-12 bg-gradient-to-r from-purple-900/50 to-pink-900/50 rounded-3xl border border-purple-500/30 overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 p-6 lg:p-8 items-center">
+            {/* Image - Left side */}
+            <div className="lg:col-span-2 relative">
+              <div className="relative aspect-[4/5] max-w-sm mx-auto lg:mx-0 rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <Image
+                  src="/img/uuws/Slide1.png"
+                  alt="Adaptive Manufacturing Workshop Poster"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              {/* Free Badge */}
+              <div className="absolute top-4 right-4 lg:right-auto lg:left-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                FREE
+              </div>
+            </div>
+
+            {/* Content - Right side */}
+            <div className="lg:col-span-3 text-white">
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                  🔥 Upcoming Event
+                </span>
+                <span className="bg-white/10 text-white px-3 py-1 rounded-full text-xs font-medium">
+                  Hybrid Mode
+                </span>
+              </div>
+
+              <h3 className="text-2xl lg:text-3xl font-bold mb-3">
+                Adaptive Manufacturing Workshop
+              </h3>
+
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                Join expert speakers for talks and case studies on <span className="text-purple-400 font-semibold">Robotics, AI, Machine Learning, and Digital Twin</span> in Manufacturing. Part of the British Council funded VIRAM project.
+              </p>
+
+              {/* Key Details */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                <div className="bg-white/5 rounded-xl p-3 border border-white/10">
+                  <p className="text-gray-400 text-xs mb-1">Date</p>
+                  <p className="font-bold text-sm">2nd Mar 2026</p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-3 border border-white/10">
+                  <p className="text-gray-400 text-xs mb-1">Time</p>
+                  <p className="font-bold text-sm">9:00 AM</p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-3 border border-white/10">
+                  <p className="text-gray-400 text-xs mb-1">In-Person</p>
+                  <p className="font-bold text-sm">Ulster Uni</p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-3 border border-white/10">
+                  <p className="text-gray-400 text-xs mb-1">Online</p>
+                  <p className="font-bold text-sm">MS Teams</p>
+                </div>
+              </div>
+
+              {/* Deadline Warning */}
+              <div className="bg-orange-500/20 border border-orange-500/30 rounded-xl p-3 mb-5 flex items-center gap-3">
+                <svg className="w-5 h-5 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-orange-300 text-sm">
+                  <span className="font-bold">Registration deadline:</span> 24th February 2026
+                </p>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/contact"
+                  className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full font-bold hover:shadow-xl hover:shadow-purple-500/30 hover:scale-105 transition-all duration-300"
+                >
+                  Register Now — Free!
+                </Link>
+                <Link
+                  href="/workshop"
+                  className="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all duration-300"
+                >
+                  View Details
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
