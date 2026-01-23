@@ -1,6 +1,76 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// Workshop configuration with deadlines (UK time)
+const WORKSHOP_CONFIG = [
+  {
+    group: "Ulster University",
+    workshops: [
+      {
+        value: "Adaptive Manufacturing Workshop - Ulster University",
+        label: "Adaptive Manufacturing Workshop",
+        startDate: new Date("2025-01-23T00:00:00Z"), // Registration starts now
+        deadline: new Date("2026-02-24T23:59:00Z"), // UK time - 24 Feb 2026 23:59
+      },
+      {
+        value: "Technical Symposium in Adaptive Manufacturing - Ulster University",
+        label: "Technical Symposium in Adaptive Manufacturing",
+        startDate: null,
+        deadline: null, // Disabled
+      },
+    ],
+  },
+  {
+    group: "MIT-ADT",
+    workshops: [
+      {
+        value: "Value Added Courses - MIT-ADT",
+        label: "Value Added Courses",
+        startDate: null,
+        deadline: null, // Disabled - set a future date to enable
+      },
+      {
+        value: "Industry Academia Networking Event - MIT-ADT",
+        label: "Industry Academia Networking Event",
+        startDate: null,
+        deadline: null, // Disabled
+      },
+    ],
+  },
+  {
+    group: "SSIGMA",
+    workshops: [
+      {
+        value: "Industry Level Training Workshop - SSIGMA",
+        label: "Industry Level Training Workshop",
+        startDate: null,
+        deadline: null, // Disabled
+      },
+    ],
+  },
+];
+
+// Helper function to check if registration is open
+const isRegistrationOpen = (startDate: Date | null, deadline: Date | null): boolean => {
+  if (deadline === null) return false; // No deadline means disabled
+  const now = new Date();
+  const hasStarted = startDate ? now >= startDate : true;
+  const hasNotEnded = now < deadline;
+  return hasStarted && hasNotEnded;
+};
+
+// Helper function to format deadline for display
+const formatDeadline = (deadline: Date): string => {
+  return deadline.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Europe/London",
+  }) + " (UK)";
+};
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -14,6 +84,7 @@ export default function ContactForm() {
     role: "",
     howDidYouHear: "",
     workshop: "",
+    attendanceMode: "",
   });
 
   const [status, setStatus] = useState<{
@@ -24,6 +95,20 @@ export default function ContactForm() {
     message: "",
   });
 
+  const [showOnlinePopup, setShowOnlinePopup] = useState(false);
+
+  // State to trigger re-render when time changes (for real-time deadline updates)
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    // Update current time every minute to check deadlines
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000); // Check every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -32,6 +117,11 @@ export default function ContactForm() {
       ...prev,
       [name]: value,
     }));
+
+    // Show popup when Online attendance is selected
+    if (name === "attendanceMode" && value === "Online") {
+      setShowOnlinePopup(true);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,6 +156,7 @@ export default function ContactForm() {
           role: "",
           howDidYouHear: "",
           workshop: "",
+          attendanceMode: "",
         });
       } else {
         setStatus({
@@ -80,6 +171,11 @@ export default function ContactForm() {
       });
     }
   };
+
+  // Get available workshops count
+  const availableWorkshopsCount = WORKSHOP_CONFIG.reduce((count, group) => {
+    return count + group.workshops.filter(w => isRegistrationOpen(w.startDate, w.deadline)).length;
+  }, 0);
 
   return (
     <section className="bg-gray-50 py-16">
@@ -255,7 +351,7 @@ export default function ContactForm() {
               </div>
             </div>
 
-            {/* Workshop Selection */}
+            {/* Workshop Selection with Deadlines */}
             <div>
               <label htmlFor="workshop" className="block text-sm font-semibold text-gray-700 mb-2">
                 Select Workshop <span className="text-pink-500">*</span>
@@ -269,18 +365,125 @@ export default function ContactForm() {
                 className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition appearance-none cursor-pointer"
               >
                 <option value="" disabled>Select Workshop</option>
-                <optgroup label="Ulster University">
-                  <option value="Adaptive Manufacturing Workshop - Ulster University">Adaptive Manufacturing Workshop</option>
-                  <option value="Technical Symposium in Adaptive Manufacturing - Ulster University">Technical Symposium in Adaptive Manufacturing</option>
-                </optgroup>
-                <optgroup label="MIT-ADT">
-                  <option value="Value Added Courses - MIT-ADT">Value Added Courses</option>
-                  <option value="Industry Academia Networking Event - MIT-ADT">Industry Academia Networking Event</option>
-                </optgroup>
-                <optgroup label="SSIGMA">
-                  <option value="Industry Level Training Workshop - SSIGMA">Industry Level Training Workshop</option>
-                </optgroup>
+                {WORKSHOP_CONFIG.map((group) => (
+                  <optgroup key={group.group} label={group.group}>
+                    {group.workshops.map((workshop) => {
+                      const isOpen = isRegistrationOpen(workshop.startDate, workshop.deadline);
+                      return (
+                        <option
+                          key={workshop.value}
+                          value={workshop.value}
+                          disabled={!isOpen}
+                        >
+                          {workshop.label}
+                          {!isOpen && " (Registration Closed)"}
+                          {isOpen && workshop.deadline && ` (Until ${formatDeadline(workshop.deadline)})`}
+                        </option>
+                      );
+                    })}
+                  </optgroup>
+                ))}
               </select>
+              
+              {/* Workshop availability info */}
+              <div className="mt-2 text-sm">
+                {availableWorkshopsCount > 0 ? (
+                  <p className="text-green-600 flex items-center">
+                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {availableWorkshopsCount} workshop{availableWorkshopsCount > 1 ? 's' : ''} available for registration
+                  </p>
+                ) : (
+                  <p className="text-orange-600 flex items-center">
+                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    No workshops currently open for registration
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Attendance Mode Selection */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-3">
+                Attendance Mode <span className="text-pink-500">*</span>
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* In Person Option */}
+                <label
+                  className={`relative flex items-center p-4 border-2 rounded-xl cursor-pointer transition-all ${
+                    formData.attendanceMode === "In Person"
+                      ? "border-purple-500 bg-purple-50"
+                      : "border-gray-200 hover:border-purple-300 bg-white"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="attendanceMode"
+                    value="In Person"
+                    checked={formData.attendanceMode === "In Person"}
+                    onChange={handleChange}
+                    required
+                    className="sr-only"
+                  />
+                  <div className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center ${
+                    formData.attendanceMode === "In Person"
+                      ? "border-purple-500"
+                      : "border-gray-300"
+                  }`}>
+                    {formData.attendanceMode === "In Person" && (
+                      <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                    )}
+                  </div>
+                  <div className="flex items-center">
+                    <svg className={`w-5 h-5 mr-2 ${formData.attendanceMode === "In Person" ? "text-purple-600" : "text-gray-500"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className={`font-medium ${formData.attendanceMode === "In Person" ? "text-purple-700" : "text-gray-700"}`}>
+                      In Person
+                    </span>
+                  </div>
+                </label>
+
+                {/* Online Option */}
+                <label
+                  className={`relative flex items-center p-4 border-2 rounded-xl cursor-pointer transition-all ${
+                    formData.attendanceMode === "Online"
+                      ? "border-purple-500 bg-purple-50"
+                      : "border-gray-200 hover:border-purple-300 bg-white"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="attendanceMode"
+                    value="Online"
+                    checked={formData.attendanceMode === "Online"}
+                    onChange={handleChange}
+                    required
+                    className="sr-only"
+                  />
+                  <div className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center ${
+                    formData.attendanceMode === "Online"
+                      ? "border-purple-500"
+                      : "border-gray-300"
+                  }`}>
+                    {formData.attendanceMode === "Online" && (
+                      <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                    )}
+                  </div>
+                  <div className="flex items-center">
+                    <svg className={`w-5 h-5 mr-2 ${formData.attendanceMode === "Online" ? "text-purple-600" : "text-gray-500"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    <span className={`font-medium ${formData.attendanceMode === "Online" ? "text-purple-700" : "text-gray-700"}`}>
+                      Online
+                    </span>
+                  </div>
+                </label>
+              </div>
             </div>
 
             {/* How did you hear about us */}
@@ -341,14 +544,66 @@ export default function ContactForm() {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={status.type === "loading"}
+              disabled={status.type === "loading" || availableWorkshopsCount === 0}
               className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:shadow-purple-500/30 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {status.type === "loading" ? "Submitting..." : "Submit"}
+              {status.type === "loading" ? "Submitting..." : "Submit Registration"}
             </button>
           </form>
         </div>
       </div>
+
+      {/* Online Attendance Popup Modal */}
+      {showOnlinePopup && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 md:p-8 relative animate-in fade-in zoom-in duration-200">
+            {/* Close button */}
+            <button
+              onClick={() => setShowOnlinePopup(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Icon */}
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </div>
+
+            {/* Content */}
+            <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
+              Online Attendance Selected
+            </h3>
+            <p className="text-gray-600 text-center mb-6">
+              Thank you for choosing to attend online! The meeting/webinar link will be shared with you via email closer to the workshop date.
+            </p>
+
+            {/* Info box */}
+            <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 mb-6">
+              <div className="flex items-start">
+                <svg className="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-sm text-purple-700">
+                  Please ensure your registered email address is correct so you don't miss the link!
+                </p>
+              </div>
+            </div>
+
+            {/* Button */}
+            <button
+              onClick={() => setShowOnlinePopup(false)}
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
+            >
+              Got it!
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
