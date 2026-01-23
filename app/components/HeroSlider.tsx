@@ -5,14 +5,22 @@ import Image from "next/image";
 
 const slides = [
   {
+    image: "/img/uuws/Slide1.png",  // Workshop poster - convert TIF to PNG
+    title: "Adaptive Manufacturing Workshop",
+    description: "Join us on 2nd March 2026 for a FREE hybrid workshop on Robotics, AI, Machine Learning & Digital Twin in Manufacturing. Registration closes 24th Feb 2026!",
+    isWorkshop: true,
+  },
+  {
     image: "/img/v1.jpg",
     title: "VIRAM Workshop 2026",
     description: "Exploring Vision-Integrated Robotics for Adaptive Manufacturing. Join us for cutting-edge insights into AI-powered automation.",
+    isWorkshop: false,
   },
   {
     image: "/img/v2.jpg",
     title: "Robotics & AI Innovation",
     description: "Learn from leaders in computer vision, robotics, and smart manufacturing who are shaping the future of Industry 4.0.",
+    isWorkshop: false,
   },
 ];
 
@@ -41,6 +49,19 @@ export default function HeroSlider() {
   return (
     <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-pink-700 overflow-hidden">
       
+      {/* Workshop Announcement Banner */}
+      <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white py-2 px-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-sm">
+          <span className="animate-pulse">🎉</span>
+          <span className="font-medium">
+            <span className="font-bold">NEW:</span> Adaptive Manufacturing Workshop — 2nd March 2026 | FREE Registration
+          </span>
+          <a href="/workshop" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition">
+            Learn More →
+          </a>
+        </div>
+      </div>
+
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
@@ -52,6 +73,18 @@ export default function HeroSlider() {
           
           {/* Left Side - Text Content */}
           <div className="text-left z-10">
+            {/* Workshop Badge */}
+            {slides[currentSlide].isWorkshop && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-flex items-center bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                  FREE
+                </span>
+                <span className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                  Hybrid: In-Person & Online
+                </span>
+              </div>
+            )}
+
             {/* Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
               {slides[currentSlide].title}
@@ -62,17 +95,52 @@ export default function HeroSlider() {
               {slides[currentSlide].description}
             </p>
 
+            {/* Workshop Details (only for workshop slide) */}
+            {slides[currentSlide].isWorkshop && (
+              <div className="flex flex-wrap gap-4 mb-6 text-white/90 text-sm">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span>2nd March 2026</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>Ulster University & Teams</span>
+                </div>
+              </div>
+            )}
+
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
-              <a href="/contact" className="inline-flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
-                Register Now
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-              <a href="#about" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
-                Learn More
-              </a>
+              {slides[currentSlide].isWorkshop ? (
+                <>
+                  <a href="/contact" className="inline-flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
+                    Register Now — Free!
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                  <a href="/workshop" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
+                    View Details
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a href="/contact" className="inline-flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
+                    Register Now
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                  <a href="#about" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
+                    Learn More
+                  </a>
+                </>
+              )}
             </div>
           </div>
 
@@ -84,13 +152,13 @@ export default function HeroSlider() {
                 className={`absolute inset-0 transition-all duration-700 ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}
               >
                 {/* Main Image */}
-                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-white">
+                <div className={`relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-white ${slide.isWorkshop ? '' : ''}`}>
                   <Image
                     src={slide.image}
                     alt={slide.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain p-4"
+                    className={slide.isWorkshop ? "object-contain" : "object-contain p-4"}
                     priority={index === 0}
                     unoptimized
                   />
