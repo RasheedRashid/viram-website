@@ -190,18 +190,47 @@ export default function Workshop() {
 
               {/* Partners */}
               <div className="border-t border-gray-100 pt-8">
-                <h3 className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-4 text-center">
-                  Organised in collaboration with
-                </h3>
-                <div className="flex flex-wrap justify-center items-center gap-8">
-                  {workshopDetails.partners.map((partner, index) => (
-                    <div key={index} className="text-center">
-                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <span className="text-gray-400 text-xs font-bold">{partner.name.split(' ').map(w => w[0]).join('')}</span>
+                {/* Funder */}
+                <div className="mb-8">
+                  <h3 className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-4 text-center">
+                    Funded By
+                  </h3>
+                  <div className="flex justify-center">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-gradient-to-br from-purple-100 to-pink-100 border-2 border-purple-200 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span className="text-purple-600 text-sm font-bold">BC</span>
                       </div>
-                      <p className="text-sm font-medium text-gray-700">{partner.name}</p>
+                      <p className="text-sm font-semibold text-gray-900">British Council</p>
+                      <p className="text-xs text-purple-600">Funder</p>
                     </div>
-                  ))}
+                  </div>
+                </div>
+
+                {/* Collaborators */}
+                <div>
+                  <h3 className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-4 text-center">
+                    In Collaboration With
+                  </h3>
+                  <div className="flex flex-wrap justify-center items-center gap-8">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span className="text-gray-500 text-xs font-bold">UU</span>
+                      </div>
+                      <p className="text-sm font-medium text-gray-700">Ulster University</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span className="text-gray-500 text-xs font-bold">MU</span>
+                      </div>
+                      <p className="text-sm font-medium text-gray-700">MIT-ADT University</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span className="text-gray-500 text-xs font-bold">S</span>
+                      </div>
+                      <p className="text-sm font-medium text-gray-700">SSIGMA</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
