@@ -56,7 +56,7 @@ export default function HeroSlider() {
           <span className="font-medium">
             <span className="font-bold">NEW:</span> Adaptive Manufacturing Workshop — 2nd March 2026 | FREE Registration
           </span>
-          <a href="/workshop" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition">
+          <a href="/ulster-university/workshop-1" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition">
             Learn More →
           </a>
         </div>
@@ -124,7 +124,7 @@ export default function HeroSlider() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </a>
-                  <a href="/workshop" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
+                  <a href="/ulster-university/workshop-1" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
                     View Details
                   </a>
                 </>
