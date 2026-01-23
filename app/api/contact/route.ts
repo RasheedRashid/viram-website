@@ -32,6 +32,7 @@ function generateCSV(data: Record<string, string>): string {
     "Gender",
     "Role",
     "Workshop",
+    "Attendance Mode",
     "How Did You Hear",
     "Registration Date",
   ];
@@ -46,6 +47,7 @@ function generateCSV(data: Record<string, string>): string {
     escapeCSV(data.gender || ""),
     escapeCSV(data.role || ""),
     escapeCSV(data.workshop || ""),
+    escapeCSV(data.attendanceMode || ""),
     escapeCSV(data.howDidYouHear || ""),
     escapeCSV(new Date().toLocaleString("en-GB")),
   ];
@@ -66,11 +68,12 @@ export async function POST(request: NextRequest) {
       gender,
       role,
       workshop,
+      attendanceMode,
       howDidYouHear,
     } = body;
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !country || !gender || !role || !workshop) {
+    if (!firstName || !lastName || !email || !country || !gender || !role || !workshop || !attendanceMode) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -83,11 +86,16 @@ export async function POST(request: NextRequest) {
     // Generate CSV
     const csvContent = generateCSV(body);
 
+    // Attendance mode styling
+    const isOnline = attendanceMode === "Online";
+    const attendanceBadgeColor = isOnline ? "#3b82f6" : "#10b981"; // Blue for online, Green for in-person
+    const attendanceIcon = isOnline ? "💻" : "📍";
+
     const mailOptions = {
       from: "contact@viram.uk",
       to: "contact@viram.uk",
       replyTo: email,
-      subject: `VIRAM Workshop Registration: ${fullName} - ${workshop}`,
+      subject: `VIRAM Workshop Registration: ${fullName} - ${workshop} (${attendanceMode})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%); padding: 20px; border-radius: 10px 10px 0 0;">
@@ -138,7 +146,12 @@ export async function POST(request: NextRequest) {
 
             <div style="background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 100%); padding: 20px; border-radius: 8px; border: 1px solid #f5d0fe; margin-bottom: 20px;">
               <h2 style="color: #9333ea; margin: 0 0 15px 0; font-size: 18px;">Workshop Selected</h2>
-              <p style="color: #111827; font-size: 16px; font-weight: 600; margin: 0; padding: 12px; background: white; border-radius: 6px;">${workshop}</p>
+              <p style="color: #111827; font-size: 16px; font-weight: 600; margin: 0 0 12px 0; padding: 12px; background: white; border-radius: 6px;">${workshop}</p>
+              
+              <div style="display: inline-block; background: ${attendanceBadgeColor}; color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">
+                ${attendanceIcon} ${attendanceMode}
+              </div>
+              ${isOnline ? '<p style="color: #6b7280; font-size: 13px; margin: 12px 0 0 0; font-style: italic;">📧 Meeting link will be shared via email before the workshop</p>' : ''}
             </div>
 
             <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #e5e7eb;">
