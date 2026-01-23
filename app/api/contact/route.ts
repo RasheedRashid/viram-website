@@ -33,6 +33,7 @@ function generateCSV(data: Record<string, string>): string {
     "Role",
     "Workshop",
     "Attendance Mode",
+    "Disability",
     "How Did You Hear",
     "Registration Date",
   ];
@@ -48,6 +49,7 @@ function generateCSV(data: Record<string, string>): string {
     escapeCSV(data.role || ""),
     escapeCSV(data.workshop || ""),
     escapeCSV(data.attendanceMode || ""),
+    escapeCSV(data.disability || ""),
     escapeCSV(data.howDidYouHear || ""),
     escapeCSV(new Date().toLocaleString("en-GB")),
   ];
@@ -69,6 +71,7 @@ export async function POST(request: NextRequest) {
       role,
       workshop,
       attendanceMode,
+      disability,
       howDidYouHear,
     } = body;
 
@@ -122,6 +125,10 @@ export async function POST(request: NextRequest) {
                 <tr>
                   <td style="padding: 8px 0; color: #6b7280;">Gender:</td>
                   <td style="padding: 8px 0; color: #111827;">${gender}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0; color: #6b7280;">Disability:</td>
+                  <td style="padding: 8px 0; color: #111827;">${disability || "Not provided"}</td>
                 </tr>
               </table>
             </div>
