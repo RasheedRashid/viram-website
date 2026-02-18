@@ -452,11 +452,7 @@ export default function ContactForm() {
 
                 {/* Online Option */}
                 <label
-                  className={`relative flex items-center p-4 border-2 rounded-xl cursor-pointer transition-all ${
-                    formData.attendanceMode === "Online"
-                      ? "border-purple-500 bg-purple-50"
-                      : "border-gray-200 hover:border-purple-300 bg-white"
-                  }`}
+                  className="relative flex items-center p-4 border-2 rounded-xl cursor-not-allowed transition-all border-gray-200 bg-gray-100 opacity-50"
                 >
                   <input
                     type="radio"
@@ -466,6 +462,7 @@ export default function ContactForm() {
                     onChange={handleChange}
                     required
                     className="sr-only"
+                    disabled
                   />
                   <div className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center ${
                     formData.attendanceMode === "Online"
@@ -481,7 +478,7 @@ export default function ContactForm() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
                     <span className={`font-medium ${formData.attendanceMode === "Online" ? "text-purple-700" : "text-gray-700"}`}>
-                      Online
+                      Online (Closed)
                     </span>
                   </div>
                 </label>
