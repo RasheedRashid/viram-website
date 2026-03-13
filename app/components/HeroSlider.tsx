@@ -49,16 +49,33 @@ export default function HeroSlider() {
   return (
     <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-pink-700 overflow-hidden">
 
-      {/* Workshop Announcement Banner — updated to completed */}
-      <div className="bg-gradient-to-r from-green-600 via-teal-600 to-green-500 text-white py-2 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-sm">
-          <span>✅</span>
-          <span className="font-medium">
-            <span className="font-bold">SUCCESS:</span> Adaptive Manufacturing Workshop — 2nd March 2026 | Successfully Completed
-          </span>
-          <a href="/ulster-university/workshop-1" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition">
-            View Highlights →
-          </a>
+      {/* Workshop Announcement Banner */}
+      <div className="bg-gray-950 text-white py-0 overflow-hidden">
+        <div className="flex divide-x divide-white/10">
+          {/* Left — Completed */}
+          <div className="flex-1 bg-gradient-to-r from-green-700 to-teal-700 py-2 px-4">
+            <div className="flex items-center justify-center gap-2 text-sm">
+              <span>✅</span>
+              <span className="font-medium">
+                <span className="font-bold">COMPLETED:</span> Adaptive Manufacturing Workshop — 2nd March 2026
+              </span>
+              <a href="/ulster-university/workshop-1" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition whitespace-nowrap">
+                View Highlights →
+              </a>
+            </div>
+          </div>
+          {/* Right — Stay tuned */}
+          <div className="flex-1 bg-gradient-to-r from-purple-800 to-pink-700 py-2 px-4">
+            <div className="flex items-center justify-center gap-2 text-sm">
+              <span className="animate-pulse">🔔</span>
+              <span className="font-medium">
+                <span className="font-bold">COMING SOON:</span> More workshops on Robotics, AI & Manufacturing
+              </span>
+              <a href="/contact" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition whitespace-nowrap">
+                Stay Tuned →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
