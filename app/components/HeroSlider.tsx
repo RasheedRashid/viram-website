@@ -5,9 +5,9 @@ import Image from "next/image";
 
 const slides = [
   {
-    image: "/img/uuws/Slide1.png",  // Workshop poster - convert TIF to PNG
+    image: "/img/uuws/Slide1.png",
     title: "Adaptive Manufacturing Workshop",
-    description: "Join us on 2nd March 2026 for a FREE hybrid workshop on Robotics, AI, Machine Learning & Digital Twin in Manufacturing. Registration closes 24th Feb 2026!",
+    description: "We are delighted to share the success of the Adaptive Manufacturing Workshop, held on 2nd March 2026. It was an inspiring day of knowledge exchange, innovation, and collaboration.",
     isWorkshop: true,
   },
   {
@@ -48,16 +48,16 @@ export default function HeroSlider() {
 
   return (
     <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-pink-700 overflow-hidden">
-      
-      {/* Workshop Announcement Banner */}
-      <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white py-2 px-4">
+
+      {/* Workshop Announcement Banner — updated to completed */}
+      <div className="bg-gradient-to-r from-green-600 via-teal-600 to-green-500 text-white py-2 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-sm">
-          <span className="animate-pulse">🎉</span>
+          <span>✅</span>
           <span className="font-medium">
-            <span className="font-bold">NEW:</span> Adaptive Manufacturing Workshop — 2nd March 2026 | FREE Registration
+            <span className="font-bold">SUCCESS:</span> Adaptive Manufacturing Workshop — 2nd March 2026 | Successfully Completed
           </span>
           <a href="/ulster-university/workshop-1" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition">
-            Learn More →
+            View Highlights →
           </a>
         </div>
       </div>
@@ -70,14 +70,14 @@ export default function HeroSlider() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20 lg:py-24">
-          
+
           {/* Left Side - Text Content */}
           <div className="text-left z-10">
             {/* Workshop Badge */}
             {slides[currentSlide].isWorkshop && (
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="inline-flex items-center bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                  FREE
+                  ✓ Completed
                 </span>
                 <span className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
                   Hybrid: In-Person & Online
@@ -118,14 +118,14 @@ export default function HeroSlider() {
             <div className="flex flex-wrap gap-4">
               {slides[currentSlide].isWorkshop ? (
                 <>
-                  <a href="/contact" className="inline-flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
-                    Register Now — Free!
+                  <a href="/ulster-university/workshop-1" className="inline-flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
+                    View Highlights
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </a>
-                  <a href="/ulster-university/workshop-1" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
-                    View Details
+                  <a href="/contact" className="inline-flex items-center border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 hover:border-white/50 transition-all duration-300">
+                    Contact Us
                   </a>
                 </>
               ) : (
@@ -151,7 +151,6 @@ export default function HeroSlider() {
                 key={index}
                 className={`absolute inset-0 transition-all duration-700 ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}
               >
-                {/* Main Image */}
                 <div className={`relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-white ${slide.isWorkshop ? '' : ''}`}>
                   <Image
                     src={slide.image}
