@@ -50,7 +50,6 @@ export default function EventHighlights() {
     },
   ];
 
-  // Funder - British Council
   const funders = [
     {
       name: "British Council",
@@ -58,7 +57,6 @@ export default function EventHighlights() {
     },
   ];
 
-  // Collaborators - Ulster University, MIT-ADT, Sigma
   const collaborators = [
     {
       name: "Ulster University",
@@ -91,17 +89,17 @@ export default function EventHighlights() {
                   className="object-cover"
                 />
               </div>
-              {/* Free Badge */}
+              {/* Completed Badge */}
               <div className="absolute top-4 right-4 lg:right-auto lg:left-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                FREE
+                ✓ Completed
               </div>
             </div>
 
             {/* Content - Right side */}
             <div className="lg:col-span-3 text-white">
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse">
-                  🔥 Upcoming Event
+                <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                  ✓ Successfully Completed
                 </span>
                 <span className="bg-white/10 text-white px-3 py-1 rounded-full text-xs font-medium">
                   Hybrid Mode
@@ -113,7 +111,7 @@ export default function EventHighlights() {
               </h3>
 
               <p className="text-gray-300 mb-4 leading-relaxed">
-                Join expert speakers for talks and case studies on <span className="text-purple-400 font-semibold">Robotics, AI, Machine Learning, and Digital Twin</span> in Manufacturing. Part of the British Council funded VIRAM project.
+                We are delighted to share the success of the Adaptive Manufacturing Workshop, held on 2nd March 2026. It was an inspiring day of knowledge exchange, innovation, and collaboration, bringing together experts from academia and industry to explore recent trends, challenges, and opportunities in adaptive manufacturing.
               </p>
 
               {/* Key Details */}
@@ -123,8 +121,8 @@ export default function EventHighlights() {
                   <p className="font-bold text-sm">2nd Mar 2026</p>
                 </div>
                 <div className="bg-white/5 rounded-xl p-3 border border-white/10">
-                  <p className="text-gray-400 text-xs mb-1">Time</p>
-                  <p className="font-bold text-sm">9:00 AM</p>
+                  <p className="text-gray-400 text-xs mb-1">Speakers</p>
+                  <p className="font-bold text-sm">5 Experts</p>
                 </div>
                 <div className="bg-white/5 rounded-xl p-3 border border-white/10">
                   <p className="text-gray-400 text-xs mb-1">In-Person</p>
@@ -136,35 +134,29 @@ export default function EventHighlights() {
                 </div>
               </div>
 
-              {/* Deadline Warning */}
-              <div className="bg-orange-500/20 border border-orange-500/30 rounded-xl p-3 mb-5 flex items-center gap-3">
-                <svg className="w-5 h-5 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              {/* Success note */}
+              <div className="bg-green-500/20 border border-green-500/30 rounded-xl p-3 mb-5 flex items-center gap-3">
+                <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-orange-300 text-sm">
-                  <span className="font-bold">Registration deadline:</span> 24th February 2026
+                <p className="text-green-300 text-sm">
+                  <span className="font-bold">Thank you</span> to all participants who joined us in person and online!
                 </p>
               </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href="/contact"
+                  href="/ulster-university/workshop-1"
                   className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-full font-bold hover:shadow-xl hover:shadow-purple-500/30 hover:scale-105 transition-all duration-300"
                 >
-                  Register Now — Free!
-                </Link>
-                <Link
-                  href="/ulster-university/workshop-1"
-                  className="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all duration-300"
-                >
-                  View Details →
+                  View Highlights →
                 </Link>
               </div>
             </div>
           </div>
         </div>
-        
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
           <div>
@@ -190,21 +182,15 @@ export default function EventHighlights() {
               key={index}
               className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-purple-500/50 hover:bg-gray-800 transition-all duration-300 group cursor-pointer"
             >
-              {/* Icon Badge */}
               <div className={`inline-flex items-center justify-center bg-gradient-to-br ${workshop.color} rounded-xl p-3 mb-4 text-white`}>
                 {workshop.icon}
               </div>
-
-              {/* Workshop Info */}
               <h3 className="text-lg font-bold text-white mb-3 group-hover:text-purple-400 transition">
                 {workshop.title}
               </h3>
-
               <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                 {workshop.description}
               </p>
-
-              {/* Features */}
               <div className="space-y-2">
                 {workshop.features.map((feature, idx) => (
                   <div key={idx} className="flex items-center text-gray-400 text-sm">
@@ -222,7 +208,7 @@ export default function EventHighlights() {
         {/* Combined Funder & Collaborators Section */}
         <div className="mt-16 pt-12 border-t border-gray-800">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0">
-            
+
             {/* Funder Section */}
             <div className="flex flex-col items-center w-full lg:w-auto lg:px-12">
               <p className="text-pink-400 text-sm mb-6 uppercase tracking-wider font-semibold">Funder</p>
@@ -249,7 +235,7 @@ export default function EventHighlights() {
             <div className="hidden lg:flex items-center self-stretch px-8">
               <div className="w-px h-full min-h-[120px] bg-gradient-to-b from-transparent via-gray-600 to-transparent"></div>
             </div>
-            
+
             {/* Horizontal Divider for mobile */}
             <div className="lg:hidden w-full flex items-center justify-center py-4">
               <div className="h-px w-3/4 bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
