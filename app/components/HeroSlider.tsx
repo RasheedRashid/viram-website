@@ -49,34 +49,53 @@ export default function HeroSlider() {
   return (
     <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-pink-700 overflow-hidden">
 
-      {/* Workshop Announcement Banner */}
-      <div className="bg-gray-950 text-white py-0 overflow-hidden">
-        <div className="flex divide-x divide-white/10">
-          {/* Left — Completed */}
-          <div className="flex-1 bg-gradient-to-r from-green-700 to-teal-700 py-2 px-4">
-            <div className="flex items-center justify-center gap-2 text-sm">
-              <span>✅</span>
-              <span className="font-medium">
-                <span className="font-bold">COMPLETED:</span> Adaptive Manufacturing Workshop — 2nd March 2026
+      {/* Sliding Announcement Banner */}
+      <div className="bg-gray-950 text-white py-2 overflow-hidden relative">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[0, 1].map((repeat) => (
+            <div key={repeat} className="flex items-center gap-0 shrink-0">
+              <span className="inline-flex items-center gap-2 px-8 text-sm">
+                <span>✅</span>
+                <span className="font-bold text-green-400">COMPLETED:</span>
+                <span>Adaptive Manufacturing Workshop — 2nd March 2026</span>
+                <a href="/ulster-university/workshop-1" className="ml-2 bg-white/10 hover:bg-white/20 px-3 py-0.5 rounded-full text-xs font-bold transition border border-white/20">
+                  View Highlights →
+                </a>
               </span>
-              <a href="/ulster-university/workshop-1" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition whitespace-nowrap">
-                View Highlights →
-              </a>
-            </div>
-          </div>
-          {/* Right — Stay tuned */}
-          <div className="flex-1 bg-gradient-to-r from-purple-800 to-pink-700 py-2 px-4">
-            <div className="flex items-center justify-center gap-2 text-sm">
-              <span className="animate-pulse">🔔</span>
-              <span className="font-medium">
-                <span className="font-bold">COMING SOON:</span> More workshops on Robotics, AI & Manufacturing
+              <span className="text-white/20 px-4">|</span>
+              <span className="inline-flex items-center gap-2 px-8 text-sm">
+                <span>🔔</span>
+                <span className="font-bold text-purple-400">COMING SOON:</span>
+                <span>More workshops on Robotics, AI & Manufacturing — Stay Tuned!</span>
+                <a href="/contact" className="ml-2 bg-white/10 hover:bg-white/20 px-3 py-0.5 rounded-full text-xs font-bold transition border border-white/20">
+                  Get Notified →
+                </a>
               </span>
-              <a href="/contact" className="ml-2 bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs font-bold transition whitespace-nowrap">
-                Stay Tuned →
-              </a>
+              <span className="text-white/20 px-4">|</span>
+              <span className="inline-flex items-center gap-2 px-8 text-sm">
+                <span>🎓</span>
+                <span className="font-bold text-pink-400">VIRAM PROJECT:</span>
+                <span>Vision-Integrated Robotics for Adaptive Manufacturing — British Council Funded</span>
+                <a href="/about" className="ml-2 bg-white/10 hover:bg-white/20 px-3 py-0.5 rounded-full text-xs font-bold transition border border-white/20">
+                  Learn More →
+                </a>
+              </span>
+              <span className="text-white/20 px-4">|</span>
             </div>
-          </div>
+          ))}
         </div>
+        <style>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+          }
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
       </div>
 
       {/* Background Pattern */}
