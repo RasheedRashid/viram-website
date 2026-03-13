@@ -6,9 +6,8 @@ export default function Workshop() {
     time: "9:00 AM - Onwards",
     locationInPerson: "Ulster University, Derry~Londonderry Campus",
     locationOnline: "Microsoft Teams",
-    registrationDeadline: "24th February 2026",
     isFree: true,
-    description: `This workshop is focused on understanding challenges and recent trends in adaptive manufacturing. It is part of the British Council Funded project on "Intelligent Vision-Based Robotics for Adaptive Manufacturing". Key expert speakers will deliver talks and case studies on Robotics, AI, Machine Learning and Digital Twin in Manufacturing.`,
+    description: `This workshop focused on understanding challenges and recent trends in adaptive manufacturing. Part of the British Council Funded project on "Intelligent Vision-Based Robotics for Adaptive Manufacturing", it brought together expert speakers to deliver talks and case studies on Robotics, AI, Machine Learning and Digital Twin in Manufacturing.`,
     topics: [
       "Robotics",
       "Artificial Intelligence",
@@ -32,7 +31,7 @@ export default function Workshop() {
       role: "Department Head of Research | EPSRC Fellowship on Field Based Computation for Vector 3D Printing",
       affiliation: "Department of Mechanical and Aerospace Engineering, The University of Manchester, UK",
       talkTitle: "Geometry-Driven Intelligence: Reshaping Manufacturing through AI-Driven Design and Process Planning",
-      image: "/img/uuws/charlie-wang.jpg", // Add your image filename here
+      image: "/img/uuws/charlie-wang.jpg",
     },
     {
       name: "Dr. Marion McAfee",
@@ -40,23 +39,31 @@ export default function Workshop() {
       role: "Funded Investigator, I-Form - Research Ireland Centre for Advanced Manufacturing",
       affiliation: "Department of Mechatronic and Electronic Engineering, Atlantic Technological University",
       talkTitle: "Bayesian Optimisation and Digital Twin Strategies for Adaptive Manufacturing in Materials Processing for Drug Delivery Devices",
-      image: "/img/uuws/marion-mcafee.jpg", // Add your image filename here
+      image: "/img/uuws/marion-mcafee.jpg",
     },
     {
       name: "Dr. Eoin Hinchy",
       title: "Associate Professor in Automated Manufacturing and Control",
       role: "School of Engineering, Faculty of Science and Engineering",
       affiliation: "University of Limerick & Bernal Institute, University of Limerick",
-      talkTitle: "Advancing Manufacturing: Digital Twins and Machine Learning for Alloy and Composite Processing",
-      image: "/img/uuws/eoin-hinchy.jpg", // Add your image filename here
+      talkTitle: "Digital Twin for Condition Monitoring",
+      image: "/img/uuws/eoin-hinchy.jpg",
+    },
+    {
+      name: "Dr. Van Mien",
+      title: "Researcher in Robotics & Automation",
+      role: "",
+      affiliation: "",
+      talkTitle: "Collaborative Robots in Adaptive Manufacturing",
+      image: "",
     },
     {
       name: "Dr. Mayur Sawant",
       title: "Assistant Professor in Mechanical Engineering",
       role: "",
       affiliation: "MIT-ADT University, Pune, India",
-      talkTitle: "TBC",
-      image: "/img/uuws/mayur-sawant.jpg", // Add your image filename here
+      talkTitle: "Sensor-Driven Adaptive Manufacturing",
+      image: "/img/uuws/mayur-sawant.jpg",
     },
   ];
 
@@ -86,15 +93,16 @@ export default function Workshop() {
                 <span className="bg-white/20 backdrop-blur-sm text-white px-4 py-1 rounded-full text-sm font-medium">
                   {workshopDetails.subtitle}
                 </span>
-                {workshopDetails.isFree && (
-                  <span className="bg-green-400 text-green-900 px-4 py-1 rounded-full text-sm font-bold">
-                    FREE Registration
-                  </span>
-                )}
+                <span className="bg-green-400 text-green-900 px-4 py-1 rounded-full text-sm font-bold">
+                  ✓ Successfully Completed
+                </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
                 {workshopDetails.title}
               </h2>
+              <p className="text-white text-lg max-w-3xl mb-4">
+                We are delighted to share the success of the Adaptive Manufacturing Workshop, held on 2 March 2026. It was an inspiring day of knowledge exchange, innovation, and collaboration, bringing together experts from academia and industry to explore recent trends, challenges, and opportunities in adaptive manufacturing.
+              </p>
               <p className="text-white/80 text-lg max-w-3xl">
                 {workshopDetails.description}
               </p>
@@ -165,32 +173,41 @@ export default function Workshop() {
                 </div>
               </div>
 
-              {/* Registration Deadline Banner */}
-              <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-6 mb-10 text-white">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-white/80 text-sm">Registration Deadline</p>
-                      <p className="text-2xl font-bold">{workshopDetails.registrationDeadline}</p>
-                    </div>
+              {/* Success Recap Banner — replaces registration deadline */}
+              <div className="bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl p-6 mb-10 text-white">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                   </div>
-                  <a
-                    href="/contact"
-                    className="bg-white text-orange-600 px-8 py-3 rounded-full font-bold hover:shadow-lg transition-all hover:scale-105"
-                  >
-                    Register Now
-                  </a>
+                  <div>
+                    <p className="text-white font-bold text-lg mb-1">Workshop successfully completed!</p>
+                    <p className="text-white/85 text-sm leading-relaxed">
+                      We are delighted to share the success of the Adaptive Manufacturing Workshop held on 2nd March 2026. It was an inspiring day of knowledge exchange, innovation, and collaboration. A special thank you to all participants who joined us in person and online — your enthusiasm and thoughtful discussions made it truly impactful.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Photo Gallery */}
+              <div className="mb-10">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Workshop Highlights</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {[1, 2, 3, 4, 5, 6].map((n) => (
+                    <div key={n}>
+                      <img
+                        src={`/img/uuws/${n}.jpg`}
+                        alt={`Workshop highlight ${n}`}
+                        className="w-full h-48 object-cover rounded-2xl"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Partners */}
               <div className="border-t border-gray-100 pt-8">
-                {/* Funder */}
                 <div className="mb-8">
                   <h3 className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-4 text-center">
                     Funded By
@@ -206,7 +223,6 @@ export default function Workshop() {
                   </div>
                 </div>
 
-                {/* Collaborators */}
                 <div>
                   <h3 className="text-sm text-gray-500 uppercase tracking-wider font-semibold mb-4 text-center">
                     In Collaboration With
@@ -243,10 +259,10 @@ export default function Workshop() {
                 Expert Speakers
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Learn from  Leaders
+                Learn from Leaders
               </h2>
               <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-                Our workshop features distinguished speakers from leading universities and research institutions.
+                Our workshop featured distinguished speakers from leading universities and research institutions.
               </p>
             </div>
 
@@ -258,7 +274,6 @@ export default function Workshop() {
                 >
                   <div className="p-6">
                     <div className="flex items-start gap-4">
-                      {/* Avatar */}
                       {speaker.image ? (
                         <img
                           src={speaker.image}
@@ -272,7 +287,6 @@ export default function Workshop() {
                           </span>
                         </div>
                       )}
-                      {/* Info */}
                       <div className="flex-1 min-w-0">
                         <h3 className="text-lg font-bold text-gray-900">{speaker.name}</h3>
                         <p className="text-purple-600 font-medium text-sm">{speaker.title}</p>
@@ -283,62 +297,44 @@ export default function Workshop() {
                     </div>
 
                     <div className="mt-4 pt-4 border-t border-gray-100">
-                      <p className="text-gray-600 text-sm mb-3">
-                        <span className="font-semibold">Affiliation:</span> {speaker.affiliation}
-                      </p>
+                      {speaker.affiliation && (
+                        <p className="text-gray-600 text-sm mb-3">
+                          <span className="font-semibold">Affiliation:</span> {speaker.affiliation}
+                        </p>
+                      )}
                       <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-100">
                         <p className="text-xs text-purple-600 uppercase tracking-wider font-semibold mb-1">
                           Talk Title
                         </p>
-                        <p className="text-gray-900 font-medium">
-                          {speaker.talkTitle === "TBC" ? (
-                            <span className="text-gray-400 italic">To be confirmed</span>
-                          ) : (
-                            speaker.talkTitle
-                          )}
-                        </p>
+                        <p className="text-gray-900 font-medium">{speaker.talkTitle}</p>
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-
-            {/* More Speakers Coming */}
-            <div className="mt-8 bg-purple-50 border border-purple-100 rounded-2xl p-6 text-center">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-              </div>
-              <p className="text-purple-700 font-medium">
-                More expert speakers will be announced soon. Stay tuned!
-              </p>
-            </div>
           </div>
 
-          {/* CTA Section */}
+          {/* Thank You CTA — replaces Register CTA */}
           <div className="mt-16 bg-gradient-to-r from-purple-600 to-pink-500 rounded-3xl p-8 md:p-12 text-center text-white">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to Join the Workshop?
+              Thank You for Being Part of This!
             </h2>
             <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-              Register now to secure your spot. Whether you prefer to attend in person at Ulster University or join online via Teams, we welcome you to be part of this learning experience.
+              Thank you to the British Council, Ulster University, and all colleagues in the School of Computing, Engineering & Intelligent Systems for making this event possible. Stay tuned for future workshops and events.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/contact"
+                href="https://viram.uk"
                 className="bg-white text-purple-600 px-8 py-4 rounded-full font-bold hover:shadow-xl transition-all hover:scale-105"
               >
-                Register Now — It's Free!
+                Explore VIRAM
               </a>
               <a
-                href="https://viram.uk"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/contact"
                 className="bg-white/10 border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all"
               >
-                Learn More
+                Contact Us
               </a>
             </div>
           </div>
@@ -352,9 +348,9 @@ export default function Workshop() {
                 </svg>
               </div>
               <div className="text-center md:text-left">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Have questions about the workshop?</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Have questions about future workshops?</h3>
                 <p className="text-gray-600 mb-4">
-                  For more information about the workshop, visit{" "}
+                  For more information, visit{" "}
                   <a href="https://viram.uk" className="text-purple-600 font-semibold hover:underline">
                     https://viram.uk
                   </a>{" "}
@@ -372,6 +368,7 @@ export default function Workshop() {
               </div>
             </div>
           </div>
+
         </div>
       </section>
     </div>
